@@ -1,0 +1,9 @@
+/*!
+ * FilePondPluginImageExifOrientation 1.0.5
+ * Licensed under MIT, https://opensource.org/licenses/MIT/
+ * Please visit https://pqina.nl/filepond/ for details.
+ */
+
+/* eslint-disable */
+
+!function(e,n){"object"==typeof exports&&"undefined"!=typeof module?module.exports=n():"function"==typeof define&&define.amd?define(n):(e=e||self).FilePondPluginImageExifOrientation=n()}(this,function(){"use strict";var e=65496,n=65505,t=1165519206,i=18761,r=274,o=65280,a=function(e,n){var t=arguments.length>2&&void 0!==arguments[2]&&arguments[2];return e.getUint16(n,t)},f=function(e,n){var t=arguments.length>2&&void 0!==arguments[2]&&arguments[2];return e.getUint32(n,t)},u=function(u){var d=u.addFilter,l=u.utils,s=l.Type,c=l.isFile;return d("DID_LOAD_ITEM",function(u,d){var l=d.query;return new Promise(function(d,s){var v=u.file;if(!c(v)||!function(e){return/^image\/jpeg/.test(e.type)}(v)||!l("GET_ALLOW_IMAGE_EXIF_ORIENTATION"))return d(u);(function(u){return new Promise(function(d,l){var s=new FileReader;s.onload=function(u){var l=new DataView(u.target.result);if(a(l,0)===e){for(var s=l.byteLength,c=2;c<s;){var v=a(l,c);if(c+=2,v===n){if(f(l,c+=2)!==t)break;var g=a(l,c+=6)===i;c+=f(l,c+4,g);var p=a(l,c,g);c+=2;for(var m=0;m<p;m++)if(a(l,c+12*m,g)===r)return void d(a(l,c+12*m+8,g))}else{if((v&o)!==o)break;c+=a(l,c)}}d(-1)}else d(-1)},s.readAsArrayBuffer(u.slice(0,65536))})})(v).then(function(e){u.setMetadata("exif",{orientation:e}),d(u)})})}),{options:{allowImageExifOrientation:[!0,s.BOOLEAN]}}};return"undefined"!=typeof window&&void 0!==window.document&&document.dispatchEvent(new CustomEvent("FilePond:pluginloaded",{detail:u})),u});
