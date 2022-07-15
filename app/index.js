@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
-require('./boot')(app);
 
-app.get('/', (req, res) => {
-  res.render('main', { layout: false, userID: 123 });
-});
+require('./boot')(app);
+require('./routes')(app);
 
 module.exports = () => {
   const port = process.env.APP_PORT;
