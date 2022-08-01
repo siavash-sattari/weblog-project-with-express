@@ -1,4 +1,4 @@
-const postModel = require('../../models/post');
+const postModel = require('@models/post');
 
 exports.index = async (req, res) => {
   const posts = await postModel.findAll();

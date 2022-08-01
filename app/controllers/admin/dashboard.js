@@ -1,4 +1,4 @@
-const statistics = require('../../models/statistics');
+const statistics = require('@models/statistics');
 
 exports.index = async (req, res) => {
   const data = {
