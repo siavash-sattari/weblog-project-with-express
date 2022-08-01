@@ -9,6 +9,15 @@
           <form action='/admin/posts/store' method='post'>
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
+                {{#if hasError}}
+                  <div class='alert alert-outline-secondary'>
+                    {{#each errors}}
+                      <p>{{this}}</p>
+                    {{/each}}
+                  </div>
+                {{/if}}
+              </div>
+              <div class='col-12 mb-30'>
                 <input name='title' type='text' id='formLayoutUsername3' class='form-control' placeholder='عنوان مطلب' />
               </div>
               <div class='col-12 mb-30'>

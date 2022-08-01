@@ -26,6 +26,7 @@
     "@controllers": "app/controllers",
     "@routes": "app/routes",
     "@services": "app/services",
-    "@database": "database"
+    "@database": "database",
+    "@validators": "app/validators"
   }
 }
