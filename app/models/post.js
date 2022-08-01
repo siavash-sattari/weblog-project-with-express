@@ -8,3 +8,8 @@ exports.findAll = async () => {
   `);
   return rows;
 };
+
+exports.create = async postData => {
+  const [result] = await db.query(`INSERT INTO posts set ?`, [postData]);
+  return result;
+};

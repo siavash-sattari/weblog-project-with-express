@@ -1,6 +1,8 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
+const path = require('path');
+const bodyParser = require('body-parser');
 
+const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
   helpers: {
     inc: function (value) {
@@ -9,9 +11,9 @@ const hbs = exphbs.create({
   }
 });
 
-const path = require('path');
-
 module.exports = app => {
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
   app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
   app.set('views', path.join(__dirname, '../views'));
