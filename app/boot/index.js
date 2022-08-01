@@ -1,6 +1,14 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+
+const hbs = exphbs.create({
+  helpers: {
+    inc: function (value) {
+      return parseInt(value) + 1;
+    }
+  }
+});
+
 const path = require('path');
 
 module.exports = app => {
