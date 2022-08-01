@@ -1,9 +1,11 @@
-exports.index = (req, res) => {
+const statistics = require('../../models/statistics');
+
+exports.index = async (req, res) => {
   const data = {
-    totlaUsers: 10,
-    totalPosts: 20,
-    totalComments: 30,
-    totalViews: 40
+    totlaUsers: await statistics.totalUsers(),
+    totalPosts: await statistics.totalPosts(),
+    totalComments: await statistics.totalComments(),
+    totalViews: await statistics.totalViews()
   };
 
   res.render('admin/dashboard/index', { layout: 'admin', ...data });
