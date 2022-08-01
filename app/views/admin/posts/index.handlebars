@@ -1,0 +1,39 @@
+<div class='row mbn-30'>
+  <div class='col-12 mb-30'>
+    <div class='box'>
+      <div class='box-head'>
+        <h4 class='title'>لیست مطالب</h4>
+        <button class='button button-primary'><a href='new-post.html'>ایجاد مطلب جدید +</a></button>
+      </div>
+      <div class='box-body'>
+        <table class='table'>
+          <thead class='thead-dark'>
+            <tr>
+              <th>#</th>
+              <th>عنوان</th>
+              <th>نویسنده</th>
+              <th>تاریخ انتشار</th>
+              <th>تعداد بازدید</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each posts}}
+              <tr>
+                <td>{{@index}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.author_id}}</td>
+                <td>{{this.created_at}}</td>
+                <td>{{this.views}}</td>
+                <td>
+                  <span style='font-size: 17px; cursor: pointer'><i class='fa fa-pencil'></i></span>
+                  <span style='font-size: 17px; cursor: pointer; margin-right: 15px'><i class='fa fa-trash'></i></span>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
