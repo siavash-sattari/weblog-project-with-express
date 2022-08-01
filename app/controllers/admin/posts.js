@@ -34,7 +34,20 @@ exports.store = async (req, res) => {
   if (errors.length > 0) {
     const users = await userModel.findAll(['id', 'full_name']);
     res.render('admin/posts/create', { layout: 'admin', users, errors, hasError: errors.length > 0 });
-  } else {
-    const result = await postModel.create(postData);
   }
+
+  const insertId = await postModel.create(postData);
+
+  if (insertId) {
+    res.redirect('/admin/posts');
+  }
+};
+
+exports.remove = async (req, res) => {
+  const postID = req.params.postID;
+  if (parseInt(postID) === 0) {
+    res.redirect('/admin/posts');
+  }
+  const result = await postModel.delete(postID);
+  res.redirect('/admin/posts');
 };
