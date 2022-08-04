@@ -1,0 +1,51 @@
+<div class='row mbn-30'>
+  <div class='col-12 mb-30'>
+    <div class='box'>
+      <div class='box-head' style='display: flex; justify-content: space-between; align-items: center'>
+        <h4 class='title'>ویرایش مطلب</h4>
+      </div>
+      <div class='box-body'>
+        <div class='col-lg-6'>
+          <form action='/admin/posts/update/{{post.id}}' method='post'>
+            <div class='row mbn-20'>
+              <div class='col-12 mb-30'>
+                {{#if hasError}}
+                  <div class='alert alert-outline-secondary'>
+                    {{#each errors}}
+                      <p>{{this}}</p>
+                    {{/each}}
+                  </div>
+                {{/if}}
+              </div>
+              <div class='col-12 mb-30'>
+                <input name='title' type='text' value='{{post.title}}' id='formLayoutUsername3' class='form-control' placeholder='عنوان مطلب' />
+              </div>
+              <div class='col-12 mb-30'>
+                <input name='slug' type='text' value='{{post.slug}}' id='formLayoutUsername3' class='form-control' placeholder='نامک مطلب' />
+              </div>
+              <div class='col-12 mb-30'>
+                <select name='author' class='form-control'>
+                  {{#each users}}
+                    <option value='{{this.id}}'>{{this.full_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class='col-12 mb-30'>
+                <textarea name='content' id='formLayoutMessage1' class='form-control' placeholder='محتوای مطلب'>{{post.content}}</textarea>
+              </div>
+              <div class='col-12 mb-30'>
+                <h6 class='mb-15'>وضعیت مطلب</h6>
+                <label><input type='radio' name='status' value='0' checked />پیش نویس</label>
+                <label><input type='radio' name='status' value='1' />در حال بازبینی</label>
+                <label><input type='radio' name='status' value='2' />منتشر شده</label>
+              </div>
+              <div class='col-12 col-lg-6 mb-20'>
+                <input type='submit' value='ذخیره سازی' class='button button-primary' />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -51,3 +51,29 @@ exports.remove = async (req, res) => {
   const result = await postModel.delete(postID);
   res.redirect('/admin/posts');
 };
+
+exports.edit = async (req, res) => {
+  const postID = req.params.postID;
+  if (parseInt(postID) === 0) {
+    res.redirect('/admin/posts');
+  }
+  const post = await postModel.find(postID);
+  const users = await userModel.findAll(['id', 'full_name']);
+  res.render('admin/posts/edit', { layout: 'admin', users, post });
+};
+
+exports.update = async (req, res) => {
+  const postID = req.params.postID;
+  if (parseInt(postID) === 0) {
+    res.redirect('/admin/posts');
+  }
+  const postData = {
+    title: req.body.title,
+    author_id: req.body.author,
+    slug: req.body.slug,
+    content: req.body.content,
+    status: req.body.status
+  };
+  const result = await postModel.update(postID, postData);
+  return res.redirect('/admin/posts');
+};
