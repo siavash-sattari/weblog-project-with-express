@@ -26,7 +26,9 @@
               <div class='col-12 mb-30'>
                 <select name='author' class='form-control'>
                   {{#each users}}
-                    <option value='{{this.id}}'>{{this.full_name}}</option>
+                    <option value='{{this.id}}' {{#isPostAuthor this.id}}selected{{/isPostAuthor}}>
+                      {{this.full_name}}
+                    </option>
                   {{/each}}
                 </select>
               </div>
@@ -35,9 +37,9 @@
               </div>
               <div class='col-12 mb-30'>
                 <h6 class='mb-15'>وضعیت مطلب</h6>
-                <label><input type='radio' name='status' value='0' checked />پیش نویس</label>
-                <label><input type='radio' name='status' value='1' />در حال بازبینی</label>
-                <label><input type='radio' name='status' value='2' />منتشر شده</label>
+                <label><input type='radio' name='status' value='0' {{#isSelectedStatus postStatus.DRAFT}}checked{{/isSelectedStatus}}/>پیش نویس</label>
+                <label><input type='radio' name='status' value='1' {{#isSelectedStatus postStatus.REVIEW}}checked{{/isSelectedStatus}}/>در حال بازبینی</label>
+                <label><input type='radio' name='status' value='2' {{#isSelectedStatus postStatus.PUBLISHED}}checked{{/isSelectedStatus}}/>منتشر شده</label>
               </div>
               <div class='col-12 col-lg-6 mb-20'>
                 <input type='submit' value='ذخیره سازی' class='button button-primary' />
