@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             {{#each comments}}
-              <tr>
+              <tr class='comment-row {{commentBackground this.status}}'>
                 <td>
                   <div class='user'>
                     <span class='avatar'>
@@ -31,9 +31,9 @@
                   <div class='comment'>
                     <p>{{this.comment}}</p>
                     <div class='buttons'>
-                      <button class='button button-success button-xs'><span>تایید</span></button>
-                      <button class='button button-warning button-xs'><span>رد</span></button>
-                      <button class='button button-danger button-xs'><span>حذف</span></button>
+                      <a href='/admin/comments/approve/{{this.id}}' class='button button-success button-xs'><span>تایید</span></a>
+                      <a href='/admin/comments/reject/{{this.id}}' class='button button-warning button-xs'><span>رد</span></a>
+                      <a href='/admin/comments/delete/{{this.id}}' class='button button-danger button-xs'><span>حذف</span></a>
                     </div>
                   </div>
                 </td>
