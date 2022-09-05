@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
@@ -14,6 +17,16 @@ const hbs = exphbs.create({
 module.exports = app => {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(
+    session({
+      secret: 'sdf6c87sd6fvc9dws8vcf9ds6v96dwsv',
+      resave: true,
+      saveUninitialized: true,
+      cookie: { maxAge: 6000 }
+    })
+  );
+  app.use(flash());
   app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
   app.set('views', path.join(__dirname, '../views'));

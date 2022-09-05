@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 require('./boot')(app);
+require('./middlewares')(app);
 require('./routes')(app);
 
 module.exports = () => {

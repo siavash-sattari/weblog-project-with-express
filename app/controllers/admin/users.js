@@ -1,5 +1,6 @@
 const userModel = require('@models/user');
 const dateService = require('@services/dateService');
+const userValidator = require('@validators/user');
 const { statuses } = require('@models/user/userStatus');
 
 exports.index = async (req, res) => {
@@ -10,11 +11,11 @@ exports.index = async (req, res) => {
     return user;
   });
 
-  res.render('admin/users/index', { layout: 'admin', users: presentedUsers });
+  res.adminRender('admin/users/index', { users: presentedUsers });
 };
 
 exports.create = async (req, res) => {
-  res.render('admin/users/create', { layout: 'admin' });
+  res.adminRender('admin/users/create');
 };
 
 exports.store = async (req, res) => {
@@ -25,9 +26,16 @@ exports.store = async (req, res) => {
     role: req.body.role
   };
 
+  const errors = userValidator.create(userData);
+  if (errors.length > 0) {
+    req.flash('errors', errors);
+    return res.redirect('/admin/users/create');
+  }
+
   const insertId = await userModel.create(userData);
 
   if (insertId) {
+    req.flash('success', 'کاربر جدید با موفقیت ایجاد شد');
     res.redirect('/admin/users');
   }
 };

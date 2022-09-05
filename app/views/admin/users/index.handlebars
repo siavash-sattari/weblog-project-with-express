@@ -4,6 +4,11 @@
       <div class='box-head'>
         <h4 class='title'>لیست کاربران</h4>
         <button class='button button-primary'><a href='/admin/users/create'>ایجاد کاربر جدید</a></button>
+        {{#if success}}
+          <div class='alert alert-outline-primary' role='alert'>
+            {{success}}
+          </div>
+        {{/if}}
       </div>
       <div class='box-body'>
         <table class='table'>
@@ -24,8 +29,12 @@
                 <td>{{this.email}}</td>
                 <td>{{this.created_at}}</td>
                 <td>
-                  <a href="/admin/users/edit/{{this.id}}" style='font-size: 17px; cursor: pointer; margin-right: 15px'><i class='fa fa-pencil'></i></a>
-                  <a href="/admin/users/delete/{{this.id}}" style='font-size: 17px; cursor: pointer; margin-right: 15px'><i class='fa fa-trash'></i></a>
+                  <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                      class='fa fa-pencil'
+                    ></i></a>
+                  <a href='/admin/users/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                      class='fa fa-trash'
+                    ></i></a>
                 </td>
               </tr>
             {{/each}}

@@ -4,7 +4,13 @@
       <div class='box-head'>
         <h4 class='title'>لیست مطالب</h4>
         <button class='button button-primary'><a href='/admin/posts/create'>ایجاد مطلب جدید</a></button>
+        {{#if success}}
+          <div class='alert alert-outline-primary' role='alert'>
+            {{success}}
+          </div>
+        {{/if}}
       </div>
+
       <div class='box-body'>
         <table class='table'>
           <thead class='thead-dark'>

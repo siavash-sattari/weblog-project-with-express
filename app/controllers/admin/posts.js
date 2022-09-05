@@ -12,12 +12,12 @@ exports.index = async (req, res) => {
     return post;
   });
 
-  res.render('admin/posts/index', { layout: 'admin', posts: presentedPosts });
+  res.adminRender('admin/posts/index', { posts: presentedPosts });
 };
 
 exports.create = async (req, res) => {
   const users = await userModel.findAll(['id', 'full_name']);
-  res.render('admin/posts/create', { layout: 'admin', users });
+  res.adminRender('admin/posts/create', { users });
 };
 
 exports.store = async (req, res) => {
@@ -33,13 +33,14 @@ exports.store = async (req, res) => {
 
   const errors = postValidator.create(postData);
   if (errors.length > 0) {
-    const users = await userModel.findAll(['id', 'full_name']);
-    res.render('admin/posts/create', { layout: 'admin', users, errors, hasError: errors.length > 0 });
+    req.flash('errors', errors);
+    return res.redirect('/admin/posts/create');
   }
 
   const insertId = await postModel.create(postData);
 
   if (insertId) {
+    req.flash('success', 'مطلب جدید با موفقیت ایجاد شد');
     res.redirect('/admin/posts');
   }
 };
