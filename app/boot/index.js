@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const sessionStore = require('./session-handlers/mysql')(session);
 
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
@@ -20,10 +21,11 @@ module.exports = app => {
   app.use(cookieParser());
   app.use(
     session({
+      store: sessionStore,
       secret: 'sdf6c87sd6fvc9dws8vcf9ds6v96dwsv',
       resave: true,
       saveUninitialized: true,
-      cookie: { maxAge: 6000 }
+      cookie: { maxAge: 60000 }
     })
   );
   app.use(flash());
