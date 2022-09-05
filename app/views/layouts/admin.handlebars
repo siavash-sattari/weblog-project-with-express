@@ -84,29 +84,23 @@
                       <a class='toggle' href='#'>
                         <span class='user'>
                           <span class='avatar' style='width: 3.2rem'>
-                            <img src='/static/assets/images/avatar/avatar-1.jpg' alt='' />
+                            <img src='{{user.avatar}}' alt='' />
                             <span class='status'></span>
                           </span>
-                          <span class='name'>سیاوش ستاری</span>
+                          <span class='name'>{{user.full_name}}</span>
                         </span>
                       </a>
 
                       <!-- Dropdown -->
                       <div class='adomx-dropdown-menu dropdown-menu-user'>
                         <div class='head'>
-                          <h5 class='name'><a href='#'>سیاوش ستاری</a></h5>
-                          <a class='mail' href='#'>example@mail.com</a>
+                          <h5 class='name'><a href='#'>{{user.full_name}}</a></h5>
+                          <a class='mail' href='#'>{{user.email}}</a>
                         </div>
                         <div class='body'>
                           <ul>
                             <li>
                               <a href='#'><i class='zmdi zmdi-account'></i>پروفایل</a>
-                            </li>
-                            <li>
-                              <a href='#'><i class='zmdi zmdi-email-open'></i>صندوق ورودی</a>
-                            </li>
-                            <li>
-                              <a href='#'><i class='zmdi zmdi-wallpaper'></i>فعالیت</a>
                             </li>
                           </ul>
                           <ul>
@@ -115,14 +109,6 @@
                             </li>
                             <li>
                               <a href='#'><i class='zmdi zmdi-lock-open'></i>خروج</a>
-                            </li>
-                          </ul>
-                          <ul>
-                            <li>
-                              <a href='#'><i class='zmdi zmdi-paypal'></i>پرداخت ها</a>
-                            </li>
-                            <li>
-                              <a href='#'><i class='zmdi zmdi-google-pages'></i>صورتحساب</a>
                             </li>
                           </ul>
                         </div>

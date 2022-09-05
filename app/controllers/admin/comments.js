@@ -10,7 +10,7 @@ exports.index = async (req, res) => {
     comment.created_at = dateService.toPersianDate(comment.created_at);
     return comment;
   });
-  res.render('admin/comments/index', {
+  res.adminRender('admin/comments/index', {
     layout: 'admin',
     comments: presentedComments,
     helpers: {

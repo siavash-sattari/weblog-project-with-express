@@ -8,5 +8,5 @@ exports.index = async (req, res) => {
     totalViews: await statistics.totalViews()
   };
 
-  res.render('admin/dashboard/index', { layout: 'admin', ...data });
+  res.adminRender('admin/dashboard/index', { layout: 'admin', ...data });
 };

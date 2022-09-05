@@ -61,7 +61,7 @@ exports.edit = async (req, res) => {
   }
   const post = await postModel.find(postID);
   const users = await userModel.findAll(['id', 'full_name']);
-  res.render('admin/posts/edit', {
+  res.adminRender('admin/posts/edit', {
     layout: 'admin',
     users,
     post,
