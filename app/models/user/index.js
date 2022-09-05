@@ -24,6 +24,19 @@ exports.findAll = async (columns = []) => {
   return rows;
 };
 
+exports.findByEmail = async email => {
+  const [rows] = await db.query(
+    `
+  SELECT * 
+  FROM users
+  WHERE email=? 
+  LIMIT 1
+  `,
+    [email]
+  );
+  return rows.length === 1 ? rows[0] : null;
+};
+
 exports.create = async userData => {
   const hashedPassword = hashService.hashPassword(userData.password);
   const updatedUserData = { ...userData, password: hashedPassword };
