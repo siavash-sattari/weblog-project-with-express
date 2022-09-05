@@ -1,13 +1,7 @@
-const userRoles = require('@models/userRoles');
-
 module.exports = (req, res, next) => {
   if (!req.session.hasOwnProperty('user')) {
-    return res.redirect('/');
+    return res.redirect('/auth/login');
   }
 
-  if (req.session.user.role !== userRoles.ADMIN) {
-    return res.redirect('/');
-  }
-  
   next();
 };

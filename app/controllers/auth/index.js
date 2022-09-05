@@ -17,6 +17,16 @@ exports.doLogin = async (req, res) => {
   return res.redirect(pathToRedirect);
 };
 
-exports.showRegister = (req, res) => {};
+exports.showRegister = (req, res) => {
+  res.newRender('auth/register', { layout: 'auth' });
+};
 
-exports.doRegister = (req, res) => {};
+exports.doRegister = async (req, res) => {
+  const { email, password, password_confirmation } = req.body;
+  const newUserId = await authService.register(email, password);
+  if (!newUserId) {
+    req.flash('errors', 'در حال حاضر امکان ثبت نام وجود ندارد');
+    return res.redirect('/auth/register');
+  }
+  return res.redirect('/auth/login');
+};
