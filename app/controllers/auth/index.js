@@ -30,3 +30,9 @@ exports.doRegister = async (req, res) => {
   }
   return res.redirect('/auth/login');
 };
+
+exports.logout = async (req, res) => {
+  req.session.destroy(error => {
+    res.redirect('/auth/login');
+  });
+};

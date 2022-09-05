@@ -25,7 +25,7 @@ module.exports = app => {
       secret: 'sdf6c87sd6fvc9dws8vcf9ds6v96dwsv',
       resave: true,
       saveUninitialized: true,
-      cookie: { maxAge: 60000 }
+      unset: 'destroy'
     })
   );
   app.use(flash());
