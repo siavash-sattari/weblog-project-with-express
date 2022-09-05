@@ -1,7 +1,8 @@
 const adminRouter = require('./admin');
 const authRouter = require('./auth');
+const auth = require('@middlewares/auth');
 
 module.exports = app => {
-  app.use('/admin', adminRouter);
+  app.use('/admin', [auth], adminRouter);
   app.use('/auth', authRouter);
 };
