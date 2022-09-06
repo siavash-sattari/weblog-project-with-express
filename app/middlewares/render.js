@@ -22,6 +22,11 @@ module.exports = app => {
       res.render(template, options);
     };
 
+    res.frontRender = (template, options) => {
+      options = { ...options, layout: 'front' };
+      res.render(template, options);
+    };
+
     next();
   });
 };

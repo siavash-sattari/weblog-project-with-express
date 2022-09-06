@@ -1,0 +1,104 @@
+
+<html lang='en'>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <meta name='description' content='' />
+    <meta name='author' content='Mosaddek' />
+
+    <!--favicon icon-->
+    <link rel='icon' type='image/png' href='/static/assets/img/favicon.png' />
+
+    <title>بلاگ استاندارد چپ</title>
+
+    <!--web fonts-->
+
+    <!--basic styles-->
+    <link href='/static/assets/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/fontawesome/css/all.min.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/custom-icon/style.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/vl-nav/css/core-menu.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/animate.min.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/magnific-popup/magnific-popup.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/owl/assets/owl.carousel.min.css' rel='stylesheet' />
+    <link href='/static/assets/vendor/owl/assets/owl.theme.default.min.css' rel='stylesheet' />
+
+    <!--custom styles-->
+    <link href='/static/assets/css/main.css' rel='stylesheet' />
+
+    <!--[if (gt IE 9) |!(IE)]><!-->
+    <!--<link rel="stylesheet" href="/static/assets/vendor/custom-nav/css/effects/fade-menu.css"/>-->
+    <link rel='stylesheet' href='/static/assets/vendor/vl-nav/css/effects/slide-menu.css' />
+    <!--<![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-136585988-1'></script>
+    <script>
+      window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-136585988-1');
+    </script>
+  </head>
+
+  <body class='bg-gray'>
+
+    {{>header}}
+
+    <!--page title start-->
+    <section class='section-gap section-top pb-0 bg-white text-center'>
+      <!--<div class="hero-img bg-overlay" data-overlay="1" style="background-image: url(/static/assets/img/price-banner.jpg);"></div>-->
+      <div class='container'>
+        <div class='row justify-content-md-center align-items-center'>
+          <div class='col-md-7'>
+            <!-- heading -->
+            <h2 class=''>
+              وبلاگ و مقاله
+            </h2>
+            <p class='lead text-muted'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن
+              ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+          </div>
+          <div class='col-md-8'>
+            <img src='/static/assets/img/blog/blog-banner.jpg' alt='' />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--page title end-->
+
+    <!--blog start-->
+    <section class='section-gap'>
+      <div class='container'>
+        <div class='row justify-content-between'>
+          <div class='col-lg-4'>
+            {{>sidebar}}
+          </div>
+          <div class='col-lg-8'>
+            {{{body}}}
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--blog end-->
+
+    {{>footer}}
+
+    <!--basic scripts-->
+    <script src='/static/assets/vendor/jquery/jquery.min.js'></script>
+    <script src='/static/assets/vendor/popper.min.js'></script>
+    <script src='/static/assets/vendor/bootstrap/js/bootstrap.min.js'></script>
+    <script src='/static/assets/vendor/vl-nav/js/vl-menu.js'></script>
+    <script src='/static/assets/vendor/magnific-popup/jquery.magnific-popup.min.js'></script>
+    <script src='/static/assets/vendor/owl/owl.carousel.min.js'></script>
+    <script src='/static/assets/vendor/jquery.animateNumber.min.js'></script>
+    <script src='/static/assets/vendor/jquery.countdown.min.js'></script>
+    <script src='/static/assets/vendor/typist.js'></script>
+    <script src='/static/assets/vendor/jquery.isotope.js'></script>
+    <script src='/static/assets/vendor/imagesloaded.js'></script>
+    <script src='/static/assets/vendor/visible.js'></script>
+    <script src='/static/assets/vendor/wow.min.js'></script>
+
+    <!--basic scripts initialization-->
+    <script src='/static/assets/js/scripts.js'></script>
+
+  </body>
+
+</html>
