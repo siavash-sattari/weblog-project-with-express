@@ -5,12 +5,12 @@ exports.find = async userID => {
   const [rows] = await db.query(
     `
   SELECT * 
-  FROM users u 
-  WHERE u.id=? LIMIT 1
+  FROM users
+  WHERE id=? LIMIT 1
   `,
     [userID]
   );
-  return rows.length > 0 ? rows[0] : false;
+  return rows.length === 1 ? rows[0] : null;
 };
 
 exports.findAll = async (columns = []) => {

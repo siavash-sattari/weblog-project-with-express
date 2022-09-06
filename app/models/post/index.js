@@ -44,3 +44,15 @@ exports.update = async (postID, updateFields) => {
   const [result] = await db.query(`UPDATE posts SET ? WHERE id=? LIMIT 1`, [updateFields, postID]);
   return result.affectedRows > 0;
 };
+
+exports.findBySlug = async postSlug => {
+  const [rows] = await db.query(
+    `
+    SELECT *
+    FROM posts 
+    WHERE slug=? LIMIT 1
+  `,
+    [postSlug]
+  );
+  return rows[0];
+};
