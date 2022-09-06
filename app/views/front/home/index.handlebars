@@ -1,5 +1,4 @@
 {{#each posts}}
-
   <div class='blog-post'>
     <a href='#'><img class='rounded mb-lg-5 mb-4' src='/static/assets/img/blog/b1.jpg' alt='card image' /></a>
     <h3 class=''><a href='#'>{{this.title}}</a></h3>
@@ -10,5 +9,14 @@
     </div>
     <p>{{this.excerpt}}</p>
   </div>
-
 {{/each}}
+
+<div class='pagination justify-content-center'>
+  <a href='/?page={{pagination.prevPage}}' class='btn btn-dark {{#showDisabled pagination.hasPrevPage}}{{/showDisabled}}'><i class='fa fa-angle-left'></i></a>
+  <div class='h6 mt-2 mx-4'>
+    {{pagination.page}}
+    از
+    {{pagination.totalPages}}
+  </div>
+  <a href='/?page={{pagination.nextPage}}' class='btn btn-dark {{#showDisabled pagination.hasNextPage}}{{/showDisabled}}'><i class='fa fa-angle-right'></i></a>
+</div>

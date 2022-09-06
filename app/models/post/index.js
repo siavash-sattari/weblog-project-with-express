@@ -13,14 +13,21 @@ exports.find = async postID => {
   return rows.length > 0 ? rows[0] : false;
 };
 
-exports.findAll = async () => {
+exports.findAll = async (page = 1, perPage = 10) => {
+  const offset = (page - 1) * perPage;
   const [rows] = await db.query(`
   SELECT p.*,u.full_name 
   FROM posts p 
   LEFT JOIN users u ON p.author_id = u.id
   ORDER BY p.created_at DESC
+  LIMIT ${offset},${perPage}
   `);
   return rows;
+};
+
+exports.count = async () => {
+  const [rows, fields] = await db.query(`SELECT COUNT(id) as postsCount FROM posts`);
+  return rows[0].postsCount;
 };
 
 exports.create = async postData => {
