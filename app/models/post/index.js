@@ -17,7 +17,7 @@ exports.findAll = async () => {
   const [rows] = await db.query(`
   SELECT p.*,u.full_name 
   FROM posts p 
-  JOIN users u ON p.author_id = u.id
+  LEFT JOIN users u ON p.author_id = u.id
   ORDER BY p.created_at DESC
   `);
   return rows;
