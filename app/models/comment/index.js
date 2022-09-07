@@ -25,3 +25,8 @@ exports.delete = async commentID => {
   const [result] = await db.query(`DELETE FROM comments WHERE id=? LIMIT 1`, [commentID]);
   return result.affectedRows > 0;
 };
+
+exports.create = async commentData => {
+  const [result] = await db.query(`INSERT INTO comments SET ?`, [commentData]);
+  return result.insertId;
+};
