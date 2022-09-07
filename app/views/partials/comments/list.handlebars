@@ -1,0 +1,41 @@
+<ul>
+  {{#each comments}}
+    <li class='comment'>
+      <article class='comment-body'>
+        <footer class='comment-meta'>
+          <div class='comment-author'>
+            <img alt='' src='{{this.avatar}}' class='' />
+            <b class='fn'>
+              <a href='#' rel='external nofollow' class='url'>
+                {{this.user_name}}
+              </a>
+            </b>
+            <span class='says'>گفته:</span>
+          </div>
+
+          <div class='comment-metadata'>
+            <a href='#'>
+              <time datetime='2018-09-02T12:17:07+00:00'>
+                {{this.created_at}}
+              </time>
+            </a>
+          </div>
+
+        </footer>
+
+        <div class='comment-content'>
+          <p>{{this.comment}}</p>
+        </div>
+
+        <div class='reply'>
+          <a rel='nofollow' class='comment-reply-link' href='#'>پاسخ</a>
+        </div>
+      </article>
+
+      {{#if (hasChildren this.id)}}
+          {{>comments/list comments=(getChildren this.id)}}
+      {{/if}}
+
+    </li>
+  {{/each}}
+</ul>
