@@ -5,77 +5,40 @@
         <div class='comments'>
           <h2 class='comments-title'> نظرات</h2>
           <ul>
-            <li class='comment'>
-              <article class='comment-body'>
-                <footer class='comment-meta'>
-                  <div class='comment-author'>
-                    <img alt='' src='/static/assets/img/team/t-1.jpg' class='' />
-                    <b class='fn'>
-                      <a href='#' rel='external nofollow' class='url'>
-                        کریس امز
-                      </a>
-                    </b>
-                    <span class='says'>گفته:</span>
-                  </div>
-
-                  <div class='comment-metadata'>
-                    <a href='#'>
-                      <time datetime='2018-09-02T12:17:07+00:00'>
-                        1398 فروردین
-                      </time>
-                    </a>
-                  </div>
-
-                </footer>
-
-                <div class='comment-content'>
-                  <p>سلام، این یک دیدگاه میباشد.<br />
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید سادگی
-                    نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.<br />
-                    زندگی را زیبا کنید
-                    <a href='#'>مدرن</a>.</p>
-                </div>
-
-                <div class='reply'>
-                  <a rel='nofollow' class='comment-reply-link' href='#'>پاسخ</a>
-                </div>
-              </article>
-              <ul class='children'>
-                <li class='comment'>
-                  <article class='comment-body'>
-                    <footer class='comment-meta'>
-                      <div class='comment-author'>
-                        <img alt='' src='/static/assets/img/team/t-2.jpg' class='' />
-                        <b class='fn'>
-                          <a href='#' rel='external nofollow' class='url'>جانس برونس</a>
-                        </b>
-                        <span class='says'>گفته:</span>
-                      </div>
-
-                      <div class='comment-metadata'>
-                        <a href='#'>
-                          <time datetime='2018-10-16T13:13:25+00:00'>
-                            1398 فروردین
-                          </time>
+            {{#each post.comments}}
+              <li class='comment'>
+                <article class='comment-body'>
+                  <footer class='comment-meta'>
+                    <div class='comment-author'>
+                      <img alt='' src='{{this.avatar}}' class='' />
+                      <b class='fn'>
+                        <a href='#' rel='external nofollow' class='url'>
+                          {{this.user_name}}
                         </a>
-                      </div>
-
-                    </footer>
-
-                    <div class='comment-content'>
-                      <p>سلام، این یک دیدگاه میباشد.<br />
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی با تولید
-                        سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.<br />
-                        زندگی را دوست داشته باشید</p>
+                      </b>
+                      <span class='says'>گفته:</span>
                     </div>
 
-                    <div class='reply'>
-                      <a rel='nofollow' class='comment-reply-link' href='#'>پاسخ</a>
+                    <div class='comment-metadata'>
+                      <a href='#'>
+                        <time datetime='2018-09-02T12:17:07+00:00'>
+                          {{this.created_at}}
+                        </time>
+                      </a>
                     </div>
-                  </article>
-                </li>
-              </ul>
-            </li>
+
+                  </footer>
+
+                  <div class='comment-content'>
+                    <p>{{this.comment}}</p>
+                  </div>
+
+                  <div class='reply'>
+                    <a rel='nofollow' class='comment-reply-link' href='#'>پاسخ</a>
+                  </div>
+                </article>
+              </li>
+            {{/each}}
           </ul>
         </div>
 

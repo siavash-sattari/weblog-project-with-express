@@ -30,3 +30,16 @@ exports.create = async commentData => {
   const [result] = await db.query(`INSERT INTO comments SET ?`, [commentData]);
   return result.insertId;
 };
+
+exports.findByPostId = async (postId, status = commentStatus.APPROVED) => {
+  const [rows] = await db.query(
+    `
+  SELECT *
+  FROM comments  
+  WHERE post_id =?
+  AND status=?
+  `,
+    [postId, status]
+  );
+  return rows;
+};
