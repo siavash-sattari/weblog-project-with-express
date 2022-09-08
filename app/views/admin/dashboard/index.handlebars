@@ -109,33 +109,33 @@
             <!-- Table Head Start -->
             <thead>
               <tr>
-                <th>کاربر</th>
-                <th>دیدگاه</th>
+                {{#if areThereAnyComments}}
+                  <th>کاربر</th>
+                  <th>دیدگاه</th>
+                {{/if}}
               </tr>
             </thead>
             <!-- Table Head End -->
 
             <!-- Table Body Start -->
             <tbody>
-              <tr>
-                <td class='fw-600'>سیاوش ستاری</td>
-                <td>
-                  <p>مطلب بسیار آموزنده ای بود</p>
-                </td>
-              </tr>
-              <tr>
-                <td class='fw-600'>سیاوش ستاری</td>
-                <td>
-                  <p>مطلب بسیار آموزنده ای بود</p>
-                </td>
-              </tr>
-              <tr>
-                <td class='fw-600'>سیاوش ستاری</td>
-                <td>
-                  <p>مطلب بسیار آموزنده ای بود</p>
-                </td>
-              </tr>
+              {{#if areThereAnyComments}}
+                {{#each latestComments}}
+                  <tr>
+                    <td class='fw-600'>{{this.user_name}}</td>
+                    <td>
+                      <p>{{this.comment}}</p>
+                    </td>
+                  </tr>
+                {{/each}}
+              {{/if}}
+
+              {{#unless areThereAnyComments}}
+                <p>در حال حاضر هیچ پیامی برای نمایش وجود ندارد</p>
+              {{/unless}}
+
             </tbody>
+
             <!-- Table Body End -->
           </table>
         </div>

@@ -43,3 +43,16 @@ exports.findByPostId = async (postId, status = commentStatus.APPROVED) => {
   );
   return rows;
 };
+
+exports.latestComments = async (limit = 10) => {
+  const [rows] = await db.query(
+    `
+  SELECT * 
+  FROM comments 
+  WHERE status=2
+  ORDER BY created_at DESC
+  LIMIT ${limit}
+  `
+  );
+  return rows;
+};

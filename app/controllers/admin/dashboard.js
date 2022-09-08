@@ -1,4 +1,5 @@
 const statistics = require('@models/statistics');
+const commentModel = require('@models/comment');
 
 exports.index = async (req, res) => {
   const data = {
@@ -8,5 +9,12 @@ exports.index = async (req, res) => {
     totalViews: await statistics.totalViews()
   };
 
-  res.adminRender('admin/dashboard/index', { layout: 'admin', ...data });
+  const latestComments = await commentModel.latestComments(3);
+
+  let areThereAnyComments = true;
+  if (latestComments.length === 0) {
+    areThereAnyComments = false;
+  }
+
+  res.adminRender('admin/dashboard/index', { layout: 'admin', latestComments, areThereAnyComments, ...data });
 };
