@@ -5,16 +5,17 @@
         <h4 class='title'>ویرایش مطلب</h4>
       </div>
       <div class='box-body'>
-        <div class='col-lg-6'>
-          <form action='/admin/posts/update/{{post.id}}' method='post'>
+        <div class='col-lg-12'>
+          <form action='/admin/posts/update/{{post.id}}' method='post' enctype='multipart/form-data'>
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
                 {{#if hasError}}
-                  <div class='alert alert-outline-secondary'>
-                    {{#each errors}}
-                      <p>{{this}}</p>
-                    {{/each}}
-                  </div>
+                  {{#each errors}}
+                    <div class='alert alert-danger' role='alert'>
+                      {{this}}
+                    <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+                    </div>
+                  {{/each}}
                 {{/if}}
               </div>
               <div class='col-12 mb-30'>
@@ -24,7 +25,8 @@
                 <input name='slug' type='text' value='{{post.slug}}' id='formLayoutUsername3' class='form-control' placeholder='نامک مطلب' />
               </div>
               <div class='col-12 mb-30'>
-                <select name='author' class='form-control'>
+                <label for='author_name' class='mb-20'>نام نویسنده :</label>
+                <select name='author' class='form-control' id='author_name'>
                   {{#each users}}
                     <option value='{{this.id}}' {{#isPostAuthor this.id}}selected{{/isPostAuthor}}>
                       {{this.full_name}}
@@ -33,10 +35,15 @@
                 </select>
               </div>
               <div class='col-12 mb-30'>
-                <textarea name='content' id='formLayoutMessage1' class='form-control' placeholder='محتوای مطلب'>{{post.content}}</textarea>
+                <label for='thumbnail' class='mb-20'>تصویر شاخص :</label>
+                <input type='file' name='thumbnail' value="/static/upload/thumbnails/{{post.thumbnail}}" id='thumbnail' class='form-control' />
               </div>
               <div class='col-12 mb-30'>
-                <h6 class='mb-15'>وضعیت مطلب</h6>
+                <label for='content' class='mb-20'>محتوای مطلب :</label>
+                <textarea name='content' id='content' class='form-control' placeholder='محتوای مطلب'>{{post.content}}</textarea>
+              </div>
+              <div class='col-12 mb-30'>
+                <h6 class='mb-15'>وضعیت مطلب :</h6>
                 <label><input type='radio' name='status' value='0' {{#isSelectedStatus postStatus.DRAFT}}checked{{/isSelectedStatus}}/>پیش نویس</label>
                 <label><input type='radio' name='status' value='1' {{#isSelectedStatus postStatus.REVIEW}}checked{{/isSelectedStatus}}/>در حال بازبینی</label>
                 <label><input type='radio' name='status' value='2' {{#isSelectedStatus postStatus.PUBLISHED}}checked{{/isSelectedStatus}}/>منتشر شده</label>

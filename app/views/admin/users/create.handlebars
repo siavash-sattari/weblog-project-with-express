@@ -10,11 +10,12 @@
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
                 {{#if hasError}}
-                  <div class='alert alert-outline-secondary'>
-                    {{#each errors}}
-                      <p>{{this}}</p>
-                    {{/each}}
-                  </div>
+                  {{#each errors}}
+                    <div class='alert alert-danger' role='alert'>
+                      {{this}}
+                    </div>
+                    <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+                  {{/each}}
                 {{/if}}
               </div>
               <div class='col-12 mb-30'>

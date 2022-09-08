@@ -11,7 +11,41 @@ exports.index = async (req, res) => {
     return user;
   });
 
-  res.adminRender('admin/users/index', { users: presentedUsers });
+  res.adminRender('admin/users/index', {
+    users: presentedUsers,
+    helpers: {
+      badgeBackground: function (role) {
+        let cssClass = '';
+        switch (true) {
+          case role === 0:
+            cssClass = 'badge badge-danger';
+            break;
+          case role === 1:
+            cssClass = 'badge badge-info';
+            break;
+          case role === 2:
+            cssClass = 'badge badge-success';
+            break;
+        }
+        return cssClass;
+      },
+      userRole: function (role) {
+        let uRole = '';
+        switch (true) {
+          case role === 0:
+            uRole = 'کاربر عادی';
+            break;
+          case role === 1:
+            uRole = 'نویسنده';
+            break;
+          case role === 2:
+            uRole = 'مدیر';
+            break;
+        }
+        return uRole;
+      }
+    }
+  });
 };
 
 exports.create = async (req, res) => {
@@ -46,6 +80,7 @@ exports.remove = async (req, res) => {
     res.redirect('/admin/users');
   }
   const result = await userModel.delete(userID);
+  req.flash('success', 'کاربر موردنظر با موفقیت حذف شد');
   res.redirect('/admin/users');
 };
 

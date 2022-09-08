@@ -13,5 +13,9 @@ exports.create = request => {
     errors.push('محتوا نمیتواند خالی باشد');
   }
 
+  if (request.thumbnail === '') {
+    errors.push('انتخاب تصویر یک فیلد ضروری می باشد');
+  }
+
   return errors;
 };

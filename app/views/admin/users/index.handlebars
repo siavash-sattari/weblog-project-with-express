@@ -1,14 +1,15 @@
 <div class='row mbn-30'>
   <div class='col-12 mb-30'>
+    {{#if success}}
+      <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        {{success}}
+        <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+      </div>
+    {{/if}}
     <div class='box'>
       <div class='box-head'>
         <h4 class='title'>لیست کاربران</h4>
         <button class='button button-primary'><a href='/admin/users/create'>ایجاد کاربر جدید</a></button>
-        {{#if success}}
-          <div class='alert alert-outline-primary' role='alert'>
-            {{success}}
-          </div>
-        {{/if}}
       </div>
       <div class='box-body'>
         <table class='table'>
@@ -17,6 +18,7 @@
               <th>#</th>
               <th>نام</th>
               <th>ایمیل</th>
+              <th>نقش کاربری</th>
               <th>تاریخ ایجاد</th>
               <th>عملیات</th>
             </tr>
@@ -27,6 +29,7 @@
                 <td>{{inc @index}}</td>
                 <td>{{this.full_name}}</td>
                 <td>{{this.email}}</td>
+                <td><span class="{{badgeBackground this.role}}">{{userRole this.role}}</span></td>
                 <td>{{this.created_at}}</td>
                 <td>
                   <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
