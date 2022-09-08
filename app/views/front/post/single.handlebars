@@ -8,16 +8,14 @@
           <div
             class='hero-img bg-overlay rounded overflow-hidden'
             data-overlay='2'
-            style='background-image: url(/static/assets/img/blog/b1.jpg);'
+            style='background-image: url(/static/upload/thumbnails/{{post.thumbnail}});'
           ></div>
           <div class='container'>
             <div class='row align-items-center text-white'>
               <div class='col-md-8'>
                 <h3>{{post.title}}</h3>
                 <div class='meta font-lora my-4 text-white'>
-                  <a href='#'>مسافرت</a>
-                  <span class='meta-separator'></span>
-                  <a href='#'>1398 فروردین</a>
+                  <a href='#'>{{post.created_at}}</a>
                 </div>
               </div>
             </div>

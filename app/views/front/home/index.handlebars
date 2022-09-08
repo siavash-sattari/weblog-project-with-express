@@ -26,7 +26,7 @@
       <div class='col-lg-8'>
         {{#each posts}}
           <div class='blog-post'>
-            <a href='#'><img class='rounded mb-lg-5 mb-4' src='/static/assets/img/blog/b1.jpg' alt='card image' /></a>
+            <a href='#'><img class='rounded mb-lg-5 mb-4' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='card image' /></a>
             <h3 class=''><a href='/p/{{this.slug}}'>{{this.title}}</a></h3>
             <div class='meta font-lora my-4'>
               <a href='#'>{{this.full_name}}</a>

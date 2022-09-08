@@ -3,6 +3,7 @@ const userModel = require('@models/user');
 const dateService = require('@services/dateService');
 const postValidator = require('@validators/post');
 const { statuses } = require('@models/post/postStatus');
+const { v4: uuidv4 } = require('uuid');
 
 exports.index = async (req, res) => {
   const posts = await postModel.findAll();
@@ -21,14 +22,16 @@ exports.create = async (req, res) => {
 };
 
 exports.store = async (req, res) => {
-  let hasError = false;
+  const fileExt = req.files.thumbnail.name.split('.')[1];
+  const newFileName = `${uuidv4()}.${fileExt}`;
 
   const postData = {
     title: req.body.title,
     author_id: req.body.author,
     slug: req.body.slug,
     content: req.body.content,
-    status: req.body.status
+    status: req.body.status,
+    thumbnail: newFileName
   };
 
   const errors = postValidator.create(postData);
@@ -40,6 +43,12 @@ exports.store = async (req, res) => {
   const insertId = await postModel.create(postData);
 
   if (insertId) {
+    if (req.files.thumbnail) {
+      const fileNewPath = `${process.cwd()}/public/upload/thumbnails/${newFileName}`;
+      req.files.thumbnail.mv(fileNewPath, err => {
+        console.log(err);
+      });
+    }
     req.flash('success', 'مطلب جدید با موفقیت ایجاد شد');
     res.redirect('/admin/posts');
   }

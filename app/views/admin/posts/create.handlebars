@@ -6,7 +6,7 @@
       </div>
       <div class='box-body'>
         <div class='col-lg-6'>
-          <form action='/admin/posts/store' method='post'>
+          <form action='/admin/posts/store' method='post' enctype='multipart/form-data'>
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
                 {{#if hasError}}
@@ -31,7 +31,11 @@
                 </select>
               </div>
               <div class='col-12 mb-30'>
-                <textarea id='content' name='content'  class='form-control' placeholder='محتوای مطلب'></textarea>
+                <label for='thumbnail'>تصویر شاخص :</label>
+                <input type='file' name='thumbnail' id='thumbnail' class='form-control' />
+              </div>
+              <div class='col-12 mb-30'>
+                <textarea id='content' name='content' class='form-control' placeholder='محتوای مطلب'></textarea>
               </div>
               <div class='col-12 mb-30'>
                 <h6 class='mb-15'>وضعیت مطلب</h6>

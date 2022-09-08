@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const fileUpload = require('express-fileupload');
 const sessionStore = require('./session-handlers/mysql')(session);
 
 const exphbs = require('express-handlebars');
@@ -29,6 +30,12 @@ module.exports = app => {
     })
   );
   app.use(flash());
+  app.use(
+    fileUpload({
+      createParentPath: true,
+      userTempFiles: true
+    })
+  );
   app.engine('handlebars', hbs.engine);
   app.set('view engine', 'handlebars');
   app.set('views', path.join(__dirname, '../views'));

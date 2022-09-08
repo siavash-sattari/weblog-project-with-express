@@ -17,6 +17,8 @@ exports.showPost = async (req, res) => {
   user.avatar = userService.gravatar(user.email);
   post.author = user;
 
+  post.created_at = dateService.toPersianDate(post.created_at);
+
   const comments = await commentModel.findByPostId(post.id);
 
   const presentedComments = comments.map(comment => {
