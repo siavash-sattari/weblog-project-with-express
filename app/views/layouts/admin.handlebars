@@ -30,6 +30,13 @@
 
     <!-- Custom Style CSS Only For Demo Purpose -->
     <link id='cus-style' rel='stylesheet' href='/static/assets/css/style-primary.css' />
+
+    <script
+      src='https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js'
+      integrity='sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw=='
+      crossorigin='anonymous'
+      referrerpolicy='no-referrer'
+    ></script>
   </head>
 
   <body dir='rtl'>
@@ -191,5 +198,10 @@
     <script src='/static/assets/js/plugins/vmap/maps/jquery.vmap.world.js'></script>
     <script src='/static/assets/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js'></script>
     <script src='/static/assets/js/plugins/vmap/vmap.active.js'></script>
+
+    <script>
+      CKEDITOR.replace( 'content',{ language:"fa" } );
+    </script>
+
   </body>
 </html>
