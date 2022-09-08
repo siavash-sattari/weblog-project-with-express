@@ -26,9 +26,16 @@ exports.index = async (req, res) => {
     return post;
   });
 
+  const latestPosts = await postModel.latestPosts(3);
+  const latestPostsForPresent = latestPosts.map(post => {
+    post.created_at = dateService.toPersianDate(post.created_at);
+    return post;
+  });
+
   res.frontRender('front/home/index', {
     posts: postsForPresent,
     pagination,
+    latestPosts: latestPostsForPresent,
     helpers: {
       showDisabled: function (isDisabled, options) {
         return !isDisabled ? 'disabled' : '';

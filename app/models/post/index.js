@@ -70,3 +70,16 @@ exports.findByKeyword = async keyword => {
   );
   return rows;
 };
+
+exports.latestPosts = async (limit = 10) => {
+  const [rows] = await db.query(
+    `
+  SELECT p.*,u.full_name 
+  FROM posts p 
+  LEFT JOIN users u ON p.author_id = u.id
+  ORDER BY p.created_at DESC
+  LIMIT ${limit}
+  `
+  );
+  return rows;
+};

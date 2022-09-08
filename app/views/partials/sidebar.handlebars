@@ -1,9 +1,9 @@
 <div class='blog-widget mb-4'>
-  <form action="/search" method="get">
+  <form action='/search' method='get'>
     <div class='form-group'>
       <div class='icon-field'>
         <i class='vl-search'></i>
-        <input type='text' name="keyword" class='form-control' placeholder='جستجو' />
+        <input type='text' name='keyword' class='form-control' placeholder='جستجو' />
       </div>
     </div>
   </form>
@@ -37,39 +37,21 @@
 </div>
 <div class='blog-widget mb-4'>
   <h6 class='mb-4'>پست های اخیر</h6>
-  <div class='card border-0 mb-1'>
-    <div class='card-body row align-items-center'>
-      <div class='col-4'>
-        <a href='#'><img class='card-img' src='/static/assets/img/blog/bt-1.jpg' alt='' /></a>
-      </div>
-      <div class='col-8'>
-        <h6 class='my-2 font-size-14'><a href='#'>دوست داشتن زندگی چیزه خوبیست!</a></h6>
-        <span class='font-size-14 text-muted'>1398 فروردین</span>
-      </div>
-    </div>
-  </div>
-  <div class='card border-0 mb-1'>
-    <div class='card-body row align-items-center'>
-      <div class='col-4'>
-        <a href='#'><img class='card-img' src='/static/assets/img/blog/bt-2.jpg' alt='' /></a>
-      </div>
-      <div class='col-8'>
-        <h6 class='my-2 font-size-14'><a href='#'>سفر بعدی خود را با تیم کلاب برنامه ریزی کنید</a></h6>
-        <span class='font-size-14 text-muted'>1398 فروردین</span>
+
+  {{#each latestPosts}}
+    <div class='card border-0 mb-1'>
+      <div class='card-body row align-items-center'>
+        <div class='col-4'>
+          <a href='#'><img class='card-img' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='' /></a>
+        </div>
+        <div class='col-8'>
+          <h6 class='my-2 font-size-14'><a href='#'>{{this.title}}</a></h6>
+          <span class='font-size-14 text-muted'>{{this.created_at}}</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class='card border-0 mb-1'>
-    <div class='card-body row align-items-center'>
-      <div class='col-4'>
-        <a href='#'><img class='card-img' src='/static/assets/img/blog/bt-3.jpg' alt='' /></a>
-      </div>
-      <div class='col-8'>
-        <h6 class='my-2 font-size-14'><a href='#'>کاوش زیبایی آمازون شمالی</a></h6>
-        <span class='font-size-14 text-muted'>1398 فروردین</span>
-      </div>
-    </div>
-  </div>
+  {{/each}}
+
 </div>
 <div class='blog-widget mb-4'>
   <div class='card card-body border-0'>
