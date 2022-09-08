@@ -56,3 +56,17 @@ exports.findBySlug = async postSlug => {
   );
   return rows[0];
 };
+
+exports.findByKeyword = async keyword => {
+  const [rows] = await db.query(
+    `
+  SELECT p.*,u.full_name 
+  FROM posts p 
+  LEFT JOIN users u ON p.author_id = u.id
+  WHERE p.title LIKE ?
+  ORDER BY p.created_at DESC
+  `,
+    ['%' + keyword + '%']
+  );
+  return rows;
+};

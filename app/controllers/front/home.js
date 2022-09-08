@@ -36,3 +36,17 @@ exports.index = async (req, res) => {
     }
   });
 };
+
+exports.search = async (req, res) => {
+  const posts = await postModel.findByKeyword(req.query.keyword);
+  const postsForPresent = posts.map(post => {
+    post.created_at = dateService.toPersianDate(post.created_at);
+    const words = post.content.split(' ');
+    post.excerpt = words.slice(0, 20 - 1).join(' ') + ' ...';
+    return post;
+  });
+
+  res.frontRender('front/home/search', {
+    posts: postsForPresent
+  });
+};
