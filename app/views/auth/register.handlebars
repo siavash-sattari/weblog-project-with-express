@@ -7,12 +7,22 @@
     </div>
 
     <div class='login-register-form'>
+
+      {{#if hasError}}
+        {{#each errors}}
+          <div class='alert alert-danger' role='alert'>
+            {{this}}
+            <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+          </div>
+        {{/each}}
+      {{/if}}
+
       <form action='/auth/register' method='POST'>
         <div class='row'>
 
-          <div class='col-12 mb-20'><input name='email' class='form-control' type='text' placeholder='نام کاربری / ایمیل' /></div>
+          <div class='col-12 mb-20'><input name='full_name' class='form-control' type='text' placeholder='نام و نام خانوادگی' /></div>
+          <div class='col-12 mb-20'><input name='email' class='form-control' type='text' placeholder='ایمیل' /></div>
           <div class='col-12 mb-20'><input name='password' class='form-control' type='password' placeholder='رمز عبور' /></div>
-          <div class='col-12 mb-20'><input name='password_confirmation' class='form-control' type='password' placeholder='تایید رمز عبور' /></div>
           <div class='col-12'>
             <div class='row justify-content-between'>
               <div class='col-auto mb-15'>در حال حاضر حساب کاربری دارید؟ <a href='/auth/login'>هم اکنون وارد شوید.</a></div>
