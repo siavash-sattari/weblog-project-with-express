@@ -9,6 +9,7 @@ const sessionStore = require('./session-handlers/mysql')(session);
 
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({
+  defaultLayout: false,
   helpers: {
     inc: function (value) {
       return parseInt(value) + 1;

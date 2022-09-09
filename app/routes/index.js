@@ -12,4 +12,8 @@ module.exports = app => {
   app.use('/admin', [auth, admin], adminRouter);
   app.use('/auth', [guest], authRouter);
   app.get('/logout', authController.logout);
+  // 404 page
+  app.use((req, res) => {
+    res.render('404');
+  });
 };

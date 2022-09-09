@@ -14564,7 +14564,7 @@ body.skin-dark .widget-chat-submission form input,
 }
 
 .error-wrap-2 .error-content {
-  text-align: left;
+  text-align: right;
 }
 
 .error-wrap-2 .error-content .display-1 {
@@ -14572,7 +14572,6 @@ body.skin-dark .widget-chat-submission form input,
   font-size: 300px;
   line-height: 0.95;
   font-weight: 800;
-  color: #ffffff;
   text-shadow: 20px 0 20px rgba(0, 0, 0, 0.1);
 }
 
