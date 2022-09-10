@@ -63,21 +63,6 @@
                     <div class='col-auto'>
                       <button class='side-header-toggle'><i class='zmdi zmdi-menu'></i></button>
                     </div>
-
-                    <!--Header Search-->
-                    <div class='col-auto'>
-                      <div class='header-search'>
-                        <button class='header-search-open d-block d-xl-none'><i class='zmdi zmdi-search'></i></button>
-
-                        <div class='header-search-form'>
-                          <form action='#'>
-                            <input type='text' placeholder='جستجو کنید' />
-                            <button><i class='zmdi zmdi-search'></i></button>
-                          </form>
-                          <button class='header-search-close d-block d-xl-none'><i class='zmdi zmdi-close'></i></button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 <!-- Side Header Toggle & Search End -->
@@ -91,29 +76,26 @@
                       <a class='toggle' href='#'>
                         <span class='user'>
                           <span class='avatar' style='width: 3.2rem'>
-                            <img src='{{user.avatar}}' alt='' />
+                            <img src='/static/upload/avatars/{{admin.user_avatar}}' alt='' />
                             <span class='status'></span>
                           </span>
-                          <span class='name'>{{user.full_name}}</span>
+                          <span class='name'>{{admin.full_name}}</span>
                         </span>
                       </a>
 
                       <!-- Dropdown -->
                       <div class='adomx-dropdown-menu dropdown-menu-user'>
                         <div class='head'>
-                          <h5 class='name'><a href='#'>{{user.full_name}}</a></h5>
-                          <a class='mail' href='#'>{{user.email}}</a>
+                          <h5 class='name'><a href='#'>{{admin.full_name}}</a></h5>
+                          <a class='mail' href='#'>{{admin.email}}</a>
                         </div>
                         <div class='body'>
                           <ul>
                             <li>
-                              <a href='#'><i class='zmdi zmdi-account'></i>پروفایل</a>
+                              <a href='/admin/users/edit/{{admin.id}}'><i class='zmdi zmdi-account'></i>پروفایل</a>
                             </li>
                           </ul>
                           <ul>
-                            <li>
-                              <a href='#'><i class='zmdi zmdi-settings'></i>تنظیمات</a>
-                            </li>
                             <li>
                               <a href='/logout'><i class='zmdi zmdi-lock-open'></i>خروج</a>
                             </li>

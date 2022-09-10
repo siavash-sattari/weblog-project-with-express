@@ -2,36 +2,58 @@
   <div class='col-12 mb-30'>
     <div class='box'>
       <div class='box-head' style='display: flex; justify-content: space-between; align-items: center'>
-        <h4 class='title'>ایجاد کاربر جدید</h4>
+        <h4 class='title'>مشخصات کاربر</h4>
+      </div>
+      <div class='col-12 mb-30'>
+        {{#if hasError}}
+          {{#each errors}}
+            <div class='alert alert-danger' role='alert'>
+              {{this}}
+              <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+      <div class='col-12'>
+        <div class='author-top'>
+          <div class='inner'>
+            <div class='author-profile'>
+              <div class='image'>
+                <img src='/static/assets/images/avatar/default.jpg' alt='' />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class='box-body'>
         <div class='col-lg-6'>
-          <form action='/admin/users/store' method='POST'>
+          <form action='/admin/users/store' method='POST' enctype='multipart/form-data'>
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
-                {{#if hasError}}
-                  {{#each errors}}
-                    <div class='alert alert-danger' role='alert'>
-                      {{this}}
-                    </div>
-                    <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
-                  {{/each}}
-                {{/if}}
+                <label for='name' class='mb-20'>نام و نام خانوادگی :</label>
+                <input name='full_name' type='text' id='name' class='form-control' placeholder='نام کامل کاربر' />
               </div>
               <div class='col-12 mb-30'>
-                <input name='full_name' type='text' id='formLayoutUsername3' class='form-control' placeholder='نام کامل کاربر' />
+                <label for='email' class='mb-20'>ایمیل :</label>
+                <input name='email' type='email' id='email' class='form-control' placeholder='ایمیل کاربر' />
               </div>
               <div class='col-12 mb-30'>
-                <input name='email' type='email' id='formLayoutUsername3' class='form-control' placeholder='ایمیل کاربر' />
+                <label for='password' class='mb-20'>رمز عبور :</label>
+                <input name='password' type='password' id='password' class='form-control' placeholder='کلمه عبور' />
+              </div>
+              <div class='col-12 mb-20'>
+                <label for='description' class='mb-20'>توضیحات (اختیاری) :</label>
+                <input name='description' type='text' id='description' class='form-control' placeholder='توضیحات' />
+              </div>
+              <div class='col-12 mb-20'>
+                <label for='user_avatar' class='mb-20'>تصویر پروفایل (اختیاری) :</label>
+                <input name='user_avatar' type='file' id='user_avatar' class='form-control' />
               </div>
               <div class='col-12 mb-30'>
-                <input name='password' type='password' id='formLayoutUsername3' class='form-control' placeholder='کلمه عبور' />
-              </div>
-              <div class='col-12 mb-30'>
-                <h6 class='mb-15'>نقش کاربری</h6>
-                <label><input type='radio' name='role' value='0' checked />کاربری</label>
+                <h6 class='mb-15'>نقش کاربری : </h6>
+                <label><input type='radio' name='role' value='0' checked />کاربر عادی</label>
                 <label><input type='radio' name='role' value='1' />نویسنده</label>
-                <label><input type='radio' name='role' value='2' />مدیر</label>
+                <label><input type='radio' name='role' value='2' />ادمین</label>
               </div>
               <div class='col-12 col-lg-6 mb-20'>
                 <input type='submit' value='ذخیره سازی' class='button button-primary' />
