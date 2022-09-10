@@ -13436,7 +13436,7 @@ body.skin-dark .widget-chat-submission form input,
 
 .author-top .inner .author-profile .image img {
   width: 100%;
-  border: 3px solid #428bfa;
+  /* border: 3px solid #428bfa; */
   border-radius: 50%;
 }
 

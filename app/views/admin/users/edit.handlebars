@@ -4,12 +4,26 @@
       <div class='box-head' style='display: flex; justify-content: space-between; align-items: center'>
         <h4 class='title'>مشخصات کاربر</h4>
       </div>
+      <div class='col-12 mb-30'>
+        {{#if hasError}}
+        {{#each errors}}
+        <div class='alert alert-danger' role='alert'>
+          {{this}}
+          <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+        </div>
+        {{/each}}
+        {{/if}}
+      </div>
       <div class='col-12'>
         <div class='author-top'>
           <div class='inner'>
             <div class='author-profile'>
               <div class='image'>
-                <img src='/static/upload/avatars/{{user.user_avatar}}' alt='' />
+                {{#if showFallbackImg}}
+                  <img src='/static/assets/images/error/fallback-image.jpg' alt='' />
+                 {{else}}
+                  <img src='/static/upload/avatars/{{user.user_avatar}}' alt='' />
+                {{/if}}
               </div>
               <div class='info'>
                 <h5>{{user.full_name}}</h5>
@@ -24,39 +38,36 @@
           <form action='/admin/users/update/{{user.id}}' method='POST' enctype='multipart/form-data'>
             <div class='row mbn-20'>
               <div class='col-12 mb-30'>
-                {{#if hasError}}
-                <div class='alert alert-outline-secondary'>
-                  {{#each errors}}
-                  <p>{{this}}</p>
-                  {{/each}}
-                </div>
-                {{/if}}
-              </div>
-              <div class='col-12 mb-30'>
-                <label for="name" class='mb-20'>نام و نام خانوادگی :</label>
+                <label for='name' class='mb-20'>نام و نام خانوادگی :</label>
                 <input name='full_name' type='text' value='{{user.full_name}}' id='name' class='form-control' placeholder='نام کامل کاربر' />
               </div>
               <div class='col-12 mb-30'>
-                <label for="email" class='mb-20'>ایمیل :</label>
+                <label for='email' class='mb-20'>ایمیل :</label>
                 <input name='email' type='email' value='{{user.email}}' id='email' class='form-control' placeholder='ایمیل کاربر' />
               </div>
               <div class='col-12 mb-30'>
-                <label for="password" class='mb-20'>رمز عبور :</label>
-                <input name='password' type='text' value='{{user.original_password}}' id='password' class='form-control' placeholder='کلمه عبور' />
+                <label for='password' class='mb-20'>رمز عبور :</label>
+                <input name='password' type='password' value='{{user.original_password}}' id='password' class='form-control' placeholder='کلمه عبور' />
               </div>
               <div class='col-12 mb-20'>
-                <label for='description' class='mb-20'>توضیحات (اختیاری) :</label>
-                <input name='description' type='text' value='{{user.description}}' id="description" class='form-control' placeholder='توضیحات'/>
+                <label for='description' class='mb-20'>توضیحات :</label>
+                <input name='description' type='text' value='{{user.description}}' id='description' class='form-control' placeholder='توضیحات' />
               </div>
               <div class='col-12 mb-20'>
-                <label for='user_avatar' class='mb-20'>تصویر پروفایل (اختیاری) :</label>
-                <input name='user_avatar' type='file' id="user_avatar" class='form-control'/>
+                <label for='user_avatar' class='mb-20'>تصویر پروفایل :</label>
+                <input name='user_avatar' type='file' id='user_avatar' class='form-control' />
               </div>
-              <div class='col-12 mb-30'>
-                <h6 class='mb-15'>نقش کاربری</h6>
-                <label><input type='radio' name='role' value='0' {{#isSelectedStatus userStatus.USER}}checked{{/isSelectedStatus}}/>کاربری</label>
-                <label><input type='radio' name='role' value='1' {{#isSelectedStatus userStatus.AUTHOR}}checked{{/isSelectedStatus}}/>نویسنده</label>
-                <label><input type='radio' name='role' value='2' {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>ادمین</label>
+              <div class='col-12 mb-20'>
+                <h5 class='mb-15'>نقش کاربری :</h5>
+                {{#if isAdmin}}
+                  <label><input type='radio' name='role' value='0' disabled {{#isSelectedStatus userStatus.USER}}checked{{/isSelectedStatus}}/>کاربری</label>
+                  <label><input type='radio' name='role' value='1' disabled {{#isSelectedStatus userStatus.AUTHOR}}checked{{/isSelectedStatus}}/>نویسنده</label>
+                  <label><input type='radio' name='role' value='2' {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>مدیر</label>
+                {{else}}
+                  <label><input type='radio' name='role' value='0' {{#isSelectedStatus userStatus.USER}}checked{{/isSelectedStatus}}/>کاربری</label>
+                  <label><input type='radio' name='role' value='1' {{#isSelectedStatus userStatus.AUTHOR}}checked{{/isSelectedStatus}}/>نویسنده</label>
+                  {{!-- <label><input type='radio' name='role' value='2' {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>مدیر</label> --}}
+                {{/if}}
               </div>
               <div class='col-12 col-lg-6 mb-20'>
                 <input type='submit' value='ذخیره سازی' class='button button-primary' />

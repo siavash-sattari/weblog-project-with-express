@@ -3,12 +3,11 @@ const dateService = require('@services/dateService');
 const userValidator = require('@validators/user');
 const { statuses } = require('@models/user/userStatus');
 const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
+const path = require('path');
 
 exports.index = async (req, res) => {
   const users = await userModel.findAll();
-
-  const adminID = 'user' in req.session ? req.session.user.id : null;
-  const admin = await userModel.find(adminID);
 
   const presentedUsers = users.map(user => {
     user.created_at = dateService.toPersianDate(user.created_at);
@@ -17,7 +16,6 @@ exports.index = async (req, res) => {
 
   res.adminRender('admin/users/index', {
     users: presentedUsers,
-    admin,
     helpers: {
       badgeBackground: function (role) {
         let cssClass = '';
@@ -54,17 +52,14 @@ exports.index = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const adminID = 'user' in req.session ? req.session.user.id : null;
-  const admin = await userModel.find(adminID);
-
-  res.adminRender('admin/users/create', { admin });
+  res.adminRender('admin/users/create');
 };
 
 exports.store = async (req, res) => {
   let fileExt = '';
   let newFileName = '';
 
-  if (req.files.user_avatar) {
+  if (req.files) {
     fileExt = req.files.user_avatar.name.split('.')[1];
     newFileName = `${uuidv4()}.${fileExt}`;
   }
@@ -115,19 +110,29 @@ exports.edit = async (req, res) => {
   if (parseInt(userID) === 0) {
     res.redirect('/admin/users');
   }
-  const user = await userModel.find(userID);
+  let user = await userModel.find(userID);
+  const currentUser = 'user' in req.session && userID == req.session.user.id ? req.session.user : null;
+  let isAdmin = false;
+  if (currentUser) {
+    user = currentUser;
+    isAdmin = user.role == 2;
+  }
 
-  const adminID = 'user' in req.session ? req.session.user.id : null;
-  const admin = await userModel.find(adminID);
+  let showFallbackImg = false;
+  const filenames = fs.readdirSync(path.join(__dirname, '../../../public/upload/avatars'));
+  if (!filenames.includes(user.user_avatar)) {
+    showFallbackImg = true;
+  }
 
-  res.render('admin/users/edit', {
+  res.adminRender('admin/users/edit', {
     layout: 'admin',
     user,
-    admin,
+    isAdmin,
+    showFallbackImg,
     userStatus: statuses(),
     helpers: {
       isSelectedStatus: function (role, options) {
-        return user.role === role ? options.fn(this) : options.inverse(this);
+        return user.role == role ? options.fn(this) : options.inverse(this);
       }
     }
   });
@@ -135,7 +140,12 @@ exports.edit = async (req, res) => {
 
 exports.update = async (req, res) => {
   const userID = req.params.userID;
-  const user = await userModel.find(userID);
+  let user = await userModel.find(userID);
+
+  const currentUser = 'user' in req.session && userID == req.session.user.id ? req.session.user : null;
+  if (currentUser) {
+    user = currentUser;
+  }
 
   let fileExt = '';
   let newFileName = user.user_avatar;
@@ -159,11 +169,20 @@ exports.update = async (req, res) => {
     role: req.body.role
   };
 
+  if (currentUser) {
+    user.full_name = req.body.full_name;
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.original_password = req.body.password;
+    user.description = req.body.description;
+    user.user_avatar = newFileName;
+    user.role = req.body.role;
+  }
+
   const errors = userValidator.create(userData);
 
   if (errors.length > 0) {
     req.flash('errors', errors);
-
     return res.redirect(`/admin/users/edit/${userID}`);
   }
 

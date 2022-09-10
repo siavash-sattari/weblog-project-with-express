@@ -76,23 +76,27 @@
                       <a class='toggle' href='#'>
                         <span class='user'>
                           <span class='avatar' style='width: 3.2rem'>
-                            <img src='/static/upload/avatars/{{admin.user_avatar}}' alt='' />
+                            {{#if showFallbackImage}}
+                              <img src='/static/assets/images/error/fallback-image.jpg' alt='' />
+                            {{else}}
+                              <img src='/static/upload/avatars/{{currentUser.user_avatar}}' alt='' />
+                            {{/if}}
                             <span class='status'></span>
                           </span>
-                          <span class='name'>{{admin.full_name}}</span>
+                          <span class='name'>{{currentUser.full_name}}</span>
                         </span>
                       </a>
 
                       <!-- Dropdown -->
                       <div class='adomx-dropdown-menu dropdown-menu-user'>
                         <div class='head'>
-                          <h5 class='name'><a href='#'>{{admin.full_name}}</a></h5>
-                          <a class='mail' href='#'>{{admin.email}}</a>
+                          <h5 class='name'><a href='#'>{{currentUser.full_name}}</a></h5>
+                          <a class='mail' href='#'>{{currentUser.email}}</a>
                         </div>
                         <div class='body'>
                           <ul>
                             <li>
-                              <a href='/admin/users/edit/{{admin.id}}'><i class='zmdi zmdi-account'></i>پروفایل</a>
+                              <a href='/admin/users/edit/{{currentUser.id}}'><i class='zmdi zmdi-account'></i>پروفایل</a>
                             </li>
                           </ul>
                           <ul>

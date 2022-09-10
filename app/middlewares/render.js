@@ -1,4 +1,5 @@
-const userService = require('@services/userService');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = app => {
   app.use((req, res, next) => {
@@ -6,10 +7,15 @@ module.exports = app => {
     const success = req.flash('success');
     const hasError = errors.length > 0;
 
-    let user = null;
+    let currentUser = null;
     if ('user' in req.session) {
-      user = req.session.user;
-      user.avatar = userService.gravatar(user.email);
+      currentUser = req.session.user;
+    }
+
+    let showFallbackImage = false;
+    const filenames = fs.readdirSync(path.join(__dirname, '../../public/upload/avatars'));
+    if (currentUser && !filenames.includes(currentUser.user_avatar)) {
+      showFallbackImage = true;
     }
 
     res.newRender = (template, options) => {
@@ -18,7 +24,7 @@ module.exports = app => {
     };
 
     res.adminRender = (template, options) => {
-      options = { ...options, layout: 'admin', hasError, errors, success, user };
+      options = { ...options, layout: 'admin', hasError, errors, success, currentUser, showFallbackImage };
       res.render(template, options);
     };
 

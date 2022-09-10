@@ -15,7 +15,7 @@ exports.doLogin = async (req, res) => {
     return res.redirect('/auth/login');
   }
   req.session.user = user;
-  const pathToRedirect = user.role === userRoles.ADMIN ? '/admin/dashboard' : '/';
+  const pathToRedirect = user.role == userRoles.ADMIN || user.role == userRoles.AUTHOR ? '/admin/dashboard' : '/';
   return res.redirect(pathToRedirect);
 };
 
@@ -48,7 +48,7 @@ exports.doRegister = async (req, res) => {
   }
 
   const newUserId = await authService.register(full_name, email, password, newFileName);
-  
+
   if (!newUserId) {
     req.flash('errors', 'در حال حاضر امکان ثبت نام وجود ندارد');
     return res.redirect('/auth/register');

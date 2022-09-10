@@ -19,7 +19,7 @@
           <div class='inner'>
             <div class='author-profile'>
               <div class='image'>
-                <img src='/static/assets/images/avatar/default.jpg' alt='' />
+                <img src='/static/assets/images/error/fallback-image.jpg' alt='' />
               </div>
             </div>
           </div>
@@ -42,18 +42,18 @@
                 <input name='password' type='password' id='password' class='form-control' placeholder='کلمه عبور' />
               </div>
               <div class='col-12 mb-20'>
-                <label for='description' class='mb-20'>توضیحات (اختیاری) :</label>
+                <label for='description' class='mb-20'>توضیحات :</label>
                 <input name='description' type='text' id='description' class='form-control' placeholder='توضیحات' />
               </div>
               <div class='col-12 mb-20'>
-                <label for='user_avatar' class='mb-20'>تصویر پروفایل (اختیاری) :</label>
+                <label for='user_avatar' class='mb-20'>تصویر پروفایل :</label>
                 <input name='user_avatar' type='file' id='user_avatar' class='form-control' />
               </div>
               <div class='col-12 mb-30'>
                 <h6 class='mb-15'>نقش کاربری : </h6>
                 <label><input type='radio' name='role' value='0' checked />کاربر عادی</label>
                 <label><input type='radio' name='role' value='1' />نویسنده</label>
-                <label><input type='radio' name='role' value='2' />ادمین</label>
+                {{!-- <label><input type='radio' name='role' value='2' />مدیر</label> --}}
               </div>
               <div class='col-12 col-lg-6 mb-20'>
                 <input type='submit' value='ذخیره سازی' class='button button-primary' />

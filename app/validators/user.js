@@ -13,5 +13,13 @@ exports.create = request => {
     errors.push('پسورد کاربر نمیتواند خالی باشد');
   }
 
+  if (request.description === '') {
+    errors.push('فیلد توضیحات نمیتواند خالی باشد');
+  }
+
+  if (!request.user_avatar) {
+    errors.push(' انتخاب تصویر پروفایل ضروری میباشد');
+  }
+
   return errors;
 };

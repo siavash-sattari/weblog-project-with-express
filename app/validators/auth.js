@@ -16,6 +16,10 @@ exports.register = request => {
     errors.push('فیلد رمز عبور نمیتواند خالی باشد');
   }
 
+  if (!request.user_avatar) {
+    errors.push(' انتخاب تصویر پروفایل ضروری میباشد');
+  }
+
   if (request.email.length > 0 && !EMAIL_PATTERN.test(request.email)) {
     errors.push('فرمت ایمیل وارد شده صحیح نمیباشد');
   }
