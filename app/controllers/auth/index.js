@@ -1,6 +1,7 @@
 const authService = require('@services/authService');
 const userRoles = require('@models/userRoles');
 const authValidator = require('@validators/auth');
+const { v4: uuidv4 } = require('uuid');
 
 exports.showLogin = (req, res) => {
   res.newRender('auth/login', { layout: 'auth' });
@@ -23,12 +24,21 @@ exports.showRegister = (req, res) => {
 };
 
 exports.doRegister = async (req, res) => {
+  let fileExt = '';
+  let newFileName = '';
+
+  if (req.files) {
+    fileExt = req.files.user_avatar.name.split('.')[1];
+    newFileName = `${uuidv4()}.${fileExt}`;
+  }
+
   const { full_name, email, password } = req.body;
 
   const userData = {
     full_name,
     email,
-    password
+    password,
+    user_avatar: newFileName
   };
 
   const errors = authValidator.register(userData);
@@ -37,11 +47,20 @@ exports.doRegister = async (req, res) => {
     return res.redirect('/auth/register');
   }
 
-  const newUserId = await authService.register(full_name, email, password);
+  const newUserId = await authService.register(full_name, email, password, newFileName);
+  
   if (!newUserId) {
     req.flash('errors', 'در حال حاضر امکان ثبت نام وجود ندارد');
     return res.redirect('/auth/register');
   }
+
+  if (req.files.user_avatar) {
+    const fileNewPath = `${process.cwd()}/public/upload/avatars/${newFileName}`;
+    req.files.user_avatar.mv(fileNewPath, err => {
+      console.log(err);
+    });
+  }
+
   return res.redirect('/auth/login');
 };
 

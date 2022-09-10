@@ -17,12 +17,16 @@
         {{/each}}
       {{/if}}
 
-      <form action='/auth/register' method='POST'>
+      <form action='/auth/register' method='POST' enctype='multipart/form-data'>
         <div class='row'>
 
           <div class='col-12 mb-20'><input name='full_name' class='form-control' type='text' placeholder='نام و نام خانوادگی' /></div>
           <div class='col-12 mb-20'><input name='email' class='form-control' type='text' placeholder='ایمیل' /></div>
           <div class='col-12 mb-20'><input name='password' class='form-control' type='password' placeholder='رمز عبور' /></div>
+          <div class='col-12 mb-20'>
+            <label for='user_avatar' class='mb-20'>تصویر پروفایل :</label>
+            <input name='user_avatar' type='file' id="user_avatar" class='form-control'/>
+          </div>
           <div class='col-12'>
             <div class='row justify-content-between'>
               <div class='col-auto mb-15'>در حال حاضر حساب کاربری دارید؟ <a href='/auth/login'>هم اکنون وارد شوید.</a></div>

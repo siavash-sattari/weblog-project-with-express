@@ -13,11 +13,13 @@ exports.login = async (email, plainPassword) => {
   return hashService.comparePassword(plainPassword, password) ? user : false;
 };
 
-exports.register = async (full_name,email, password) => {
+exports.register = async (full_name, email, password, user_avatar) => {
   const insertId = await userModel.create({
     full_name,
     email,
     password,
+    original_password: password,
+    user_avatar,
     role: userRoles.USER
   });
 
