@@ -123,24 +123,36 @@
         <div class='side-header-inner custom-scroll'>
           <nav class='side-header-menu' id='side-header-menu'>
             <ul>
-              <li>
-                <a href='/admin/dashboard'><i class='ti-home'></i> <span>داشبورد</span></a>
-              </li>
-              <li>
-                <a href='/admin/posts'><i class='ti-pencil-alt'></i> <span>مطالب</span></a>
-              </li>
-              <li>
-                <a href='/admin/comments'><i class='ti-comments'></i> <span>دیدگاه ها</span></a>
-              </li>
-              <li>
-                <a href='/admin/users'><i class='ti-pencil-alt'></i> <span>کاربران</span></a>
-              </li>
-              <li>
-                <a href='/admin/settings'><i class='ti-settings'></i> <span>تنظیمات</span></a>
-              </li>
-              <li>
-                <a href='/'><i class='ti-eye'></i> <span>مشاهده بلاگ</span></a>
-              </li>
+              {{#if isAuthor}}
+                <li>
+                  <a href='/admin/dashboard'><i class='ti-home'></i> <span>داشبورد</span></a>
+                </li>
+                <li>
+                  <a href='/admin/posts'><i class='ti-pencil-alt'></i> <span>مطالب من</span></a>
+                </li>
+                <li>
+                  <a href='/admin/comments'><i class='ti-comments'></i> <span>دیدگاه ها</span></a>
+                </li>
+                <li>
+                  <a href='/'><i class='ti-eye'></i> <span>مشاهده بلاگ</span></a>
+                </li>
+              {{else}}
+                <li>
+                  <a href='/admin/dashboard'><i class='ti-home'></i> <span>داشبورد</span></a>
+                </li>
+                <li>
+                  <a href='/admin/posts'><i class='ti-pencil-alt'></i> <span>مطالب</span></a>
+                </li>
+                <li>
+                  <a href='/admin/comments'><i class='ti-comments'></i> <span>دیدگاه ها</span></a>
+                </li>
+                <li>
+                  <a href='/admin/users'><i class='ti-pencil-alt'></i> <span>کاربران</span></a>
+                </li>
+                <li>
+                  <a href='/'><i class='ti-eye'></i> <span>مشاهده بلاگ</span></a>
+                </li>
+              {{/if}}
             </ul>
           </nav>
         </div>

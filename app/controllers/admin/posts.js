@@ -6,7 +6,13 @@ const { statuses } = require('@models/post/postStatus');
 const { v4: uuidv4 } = require('uuid');
 
 exports.index = async (req, res) => {
-  const posts = await postModel.findAll();
+  let posts;
+  const author = 'user' in req.session && req.session.user.role == 1 ? req.session.user : null;
+  if (author) {
+    posts = await postModel.findAuthorBlogs(author.id);
+  } else {
+    posts = await postModel.findAll();
+  }
 
   const presentedPosts = posts.map(post => {
     post.created_at = dateService.toPersianDate(post.created_at);
@@ -18,7 +24,8 @@ exports.index = async (req, res) => {
 
 exports.create = async (req, res) => {
   const users = await userModel.findAll(['id', 'full_name']);
-  res.adminRender('admin/posts/create', { users });
+  const isAdmin = 'user' in req.session && req.session.user.role == 2 ? req.session.user : null;
+  res.adminRender('admin/posts/create', { users, isAdmin });
 };
 
 exports.store = async (req, res) => {
@@ -76,10 +83,12 @@ exports.edit = async (req, res) => {
   }
   const post = await postModel.find(postID);
   const users = await userModel.findAll(['id', 'full_name']);
+  const isAdmin = 'user' in req.session && req.session.user.role == 2 ? req.session.user : null;
   res.adminRender('admin/posts/edit', {
     layout: 'admin',
     users,
     post,
+    isAdmin,
     postStatus: statuses(),
     helpers: {
       isPostAuthor: function (userID, options) {

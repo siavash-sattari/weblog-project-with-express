@@ -25,6 +25,22 @@ exports.findAll = async (page = 1, perPage = 10) => {
   return rows;
 };
 
+exports.findAuthorBlogs = async (userID, page = 1, perPage = 10) => {
+  const offset = (page - 1) * perPage;
+
+  const [rows] = await db.query(
+    `
+  SELECT p.*,u.full_name 
+  FROM posts p 
+  JOIN users u ON p.author_id = u.id AND p.author_id = ?
+  ORDER BY p.created_at DESC
+  LIMIT ${offset},${perPage}
+  `,
+    [userID]
+  );
+  return rows;
+};
+
 exports.count = async () => {
   const [rows, fields] = await db.query(`SELECT COUNT(id) as postsCount FROM posts`);
   return rows[0].postsCount;

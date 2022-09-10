@@ -20,7 +20,7 @@ exports.register = async (full_name, email, password, user_avatar) => {
     password,
     original_password: password,
     user_avatar,
-    role: userRoles.USER
+    role: userRoles.WRITER
   });
 
   return insertId;

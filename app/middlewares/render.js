@@ -18,13 +18,15 @@ module.exports = app => {
       showFallbackImage = true;
     }
 
+    const isAuthor = 'user' in req.session && req.session.user.role == 1 ? true : false;
+
     res.newRender = (template, options) => {
       options = { ...options, hasError, errors, success };
       res.render(template, options);
     };
 
     res.adminRender = (template, options) => {
-      options = { ...options, layout: 'admin', hasError, errors, success, currentUser, showFallbackImage };
+      options = { ...options, layout: 'admin', hasError, errors, success, currentUser, showFallbackImage, isAuthor };
       res.render(template, options);
     };
 

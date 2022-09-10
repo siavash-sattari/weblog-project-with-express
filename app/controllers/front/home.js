@@ -32,9 +32,12 @@ exports.index = async (req, res) => {
     return post;
   });
 
+  const isAuthor = 'user' in req.session && req.session.user.role == 1 ? true : false;
+
   res.frontRender('front/home/index', {
     posts: postsForPresent,
     pagination,
+    isAuthor,
     latestPosts: latestPostsForPresent,
     helpers: {
       showDisabled: function (isDisabled, options) {

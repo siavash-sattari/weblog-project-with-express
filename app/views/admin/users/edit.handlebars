@@ -64,9 +64,9 @@
                   <label><input type='radio' name='role' value='1' disabled {{#isSelectedStatus userStatus.AUTHOR}}checked{{/isSelectedStatus}}/>نویسنده</label>
                   <label><input type='radio' name='role' value='2' {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>مدیر</label>
                 {{else}}
-                  <label><input type='radio' name='role' value='0' {{#isSelectedStatus userStatus.USER}}checked{{/isSelectedStatus}}/>کاربری</label>
+                  <label><input type='radio' name='role' value='0' disabled {{#isSelectedStatus userStatus.USER}}checked{{/isSelectedStatus}}/>کاربری</label>
                   <label><input type='radio' name='role' value='1' {{#isSelectedStatus userStatus.AUTHOR}}checked{{/isSelectedStatus}}/>نویسنده</label>
-                  {{!-- <label><input type='radio' name='role' value='2' {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>مدیر</label> --}}
+                  <label><input type='radio' name='role' value='2' disabled {{#isSelectedStatus userStatus.ADMIN}}checked{{/isSelectedStatus}}/>مدیر</label>
                 {{/if}}
               </div>
               <div class='col-12 col-lg-6 mb-20'>

@@ -195,5 +195,11 @@ exports.update = async (req, res) => {
   req.flash('success', 'کاربر موردنظر با موفقیت ویرایش شد');
 
   const result = await userModel.update(userID, userData);
-  return res.redirect('/admin/users');
+
+  const isAuthor = 'user' in req.session && req.session.user.role == 1 ? true : false;
+  if (isAuthor) {
+    return res.redirect('/admin/dashboard');
+  } else {
+    return res.redirect('/admin/users');
+  }
 };

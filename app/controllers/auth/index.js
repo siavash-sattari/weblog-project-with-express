@@ -66,6 +66,6 @@ exports.doRegister = async (req, res) => {
 
 exports.logout = async (req, res) => {
   req.session.destroy(error => {
-    res.redirect('/auth/login');
+    res.redirect('/');
   });
 };
