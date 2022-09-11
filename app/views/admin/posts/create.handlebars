@@ -19,10 +19,12 @@
                 {{/if}}
               </div>
               <div class='col-12 mb-30'>
-                <input name='title' type='text' id='formLayoutUsername3' class='form-control' placeholder='عنوان مطلب' />
+                <label class='mb-20' for="title">عنوان مطلب :</label>
+                <input name='title' type='text' id='title' class='form-control' placeholder='عنوان مطلب' />
               </div>
               <div class='col-12 mb-30'>
-                <input name='slug' type='text' id='formLayoutUsername3' class='form-control' placeholder='نامک مطلب' />
+                <label class='mb-20' for="slug">نامک مطلب :</label>
+                <input name='slug' type='text' id='slug' class='form-control' placeholder='نامک مطلب' />
               </div>
               {{#if isAdmin}}
                 <div class='col-12 mb-30'>
@@ -35,7 +37,7 @@
                 </div>
               {{/if}}
               <div class='col-12 mb-30'>
-                <label for='thumbnail' class='mb-20'>تصویر شاخص :</label>
+                <label for='thumbnail' class='mb-20'>تصویر مطلب :</label>
                 <input type='file' name='thumbnail' id='thumbnail' class='form-control' />
               </div>
               <div class='col-12 mb-30'>

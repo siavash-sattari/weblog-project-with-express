@@ -15414,3 +15414,9 @@ body.skin-dark .cus-radio.light .icon::before {
   left: auto;
   right: 0;
 }
+
+.post-thumbnail img{
+  width:100%;
+  max-height:17rem;
+  object-fit:cover;
+}

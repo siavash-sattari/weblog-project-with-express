@@ -19,10 +19,12 @@
                 {{/if}}
               </div>
               <div class='col-12 mb-30'>
-                <input name='title' type='text' value='{{post.title}}' id='formLayoutUsername3' class='form-control' placeholder='عنوان مطلب' />
+                <label class='mb-20' for="title">عنوان مطلب :</label>
+                <input name='title' type='text' value='{{post.title}}' id='title' class='form-control' placeholder='عنوان مطلب' />
               </div>
               <div class='col-12 mb-30'>
-                <input name='slug' type='text' value='{{post.slug}}' id='formLayoutUsername3' class='form-control' placeholder='نامک مطلب' />
+                <label class='mb-20' for="slug">نامک مطلب :</label>
+                <input name='slug' type='text' value='{{post.slug}}' id='slug' class='form-control' placeholder='نامک مطلب' />
               </div>
               {{#if isAdmin}}
               <div class='col-12 mb-30'>
@@ -37,7 +39,11 @@
               </div>
               {{/if}}
               <div class='col-12 mb-30'>
-                <label for='thumbnail' class='mb-20'>تصویر شاخص :</label>
+                <label class='mb-20'>تصویر مطلب :</label>
+                <div class="post-thumbnail"><img src="/static/upload/thumbnails/{{post.thumbnail}}" /></div>
+              </div>
+              <div class='col-12 mb-30'>
+                <label for='thumbnail' class='mb-20'>تغییر تصویر :</label>
                 <input type='file' name='thumbnail' value="/static/upload/thumbnails/{{post.thumbnail}}" id='thumbnail' class='form-control' />
               </div>
               <div class='col-12 mb-30'>
