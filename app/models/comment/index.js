@@ -59,10 +59,10 @@ exports.findByPostId = async (postId, status = commentStatus.APPROVED) => {
 
 exports.latestComments = async (limit = 10) => {
   const [rows] = await db.query(
-    `
-  SELECT * 
-  FROM comments 
-  WHERE status=2
+  `
+  SELECT c.*,p.title
+  FROM comments c 
+  JOIN posts p ON c.post_id = p.id
   ORDER BY created_at DESC
   LIMIT ${limit}
   `

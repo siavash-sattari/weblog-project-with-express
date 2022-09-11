@@ -1,5 +1,6 @@
 const statistics = require('@models/statistics');
 const commentModel = require('@models/comment');
+const dateService = require('@services/dateService');
 
 exports.index = async (req, res) => {
   let data;
@@ -27,5 +28,10 @@ exports.index = async (req, res) => {
     areThereAnyComments = false;
   }
 
-  res.adminRender('admin/dashboard/index', { layout: 'admin', latestComments, areThereAnyComments, author, ...data });
+  const presentedComments = latestComments.map(comment => {
+    comment.created_at = dateService.toPersianDate(comment.created_at);
+    return comment;
+  });
+
+  res.adminRender('admin/dashboard/index', { layout: 'admin', latestComments: presentedComments, areThereAnyComments, author, ...data });
 };

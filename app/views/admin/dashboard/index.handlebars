@@ -4,7 +4,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد مطالب</h4>
-          <span class='view'><i class='zmdi zmdi-eye'></i></span>
+          <span class='view'><i class='ti-eye'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalPosts}}</h2>
@@ -15,7 +15,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد دیدگاه ها</h4>
-          <span class='view'><i class='zmdi zmdi-eye'></i></span>
+          <span class='view'><i class='ti-eye'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalComments}}</h2>
@@ -27,7 +27,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد کاربران</h4>
-          <span class='view'><i class='zmdi zmdi-eye'></i></span>
+          <span class='view'><i class='ti-eye'></i></span>
         </div>
         <div class='content'>
           <h2>{{totlaUsers}}</h2>
@@ -38,7 +38,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد مطالب</h4>
-          <span class='view'><i class='zmdi zmdi-eye'></i></span>
+          <span class='view'><i class='ti-eye'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalPosts}}</h2>
@@ -49,7 +49,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد دیدگاه ها</h4>
-          <span class='view'><i class='zmdi zmdi-eye'></i></span>
+          <span class='view'><i class='ti-eye'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalComments}}</h2>
@@ -72,6 +72,9 @@
                 {{#if areThereAnyComments}}
                   <th>کاربر</th>
                   <th>دیدگاه</th>
+                  <th>ایمیل</th>
+                  <th>در پاسخ به</th>
+                  <th>ارسال شده</th>
                 {{/if}}
               </tr>
             </thead>
@@ -83,6 +86,9 @@
                     <td>
                       <p>{{this.comment}}</p>
                     </td>
+                    <td class='fw-600'>{{this.user_email}}</td>
+                    <td class='fw-600'>{{this.title}}</td>
+                    <td class='fw-600'>{{this.created_at}}</td>
                   </tr>
                 {{/each}}
               {{/if}}
