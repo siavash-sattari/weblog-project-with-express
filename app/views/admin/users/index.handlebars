@@ -3,7 +3,7 @@
     {{#if success}}
       <div class='alert alert-success alert-dismissible fade show' role='alert'>
         {{success}}
-        <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+        <button class='close' data-dismiss='alert'><i class='ti-close'></i></button>
       </div>
     {{/if}}
     <div class='box'>
@@ -17,6 +17,7 @@
             <thead class='thead-dark'>
               <tr>
                 <th>#</th>
+                <th>تصویر</th>
                 <th>نام</th>
                 <th>ایمیل</th>
                 <th>نقش کاربری</th>
@@ -28,16 +29,21 @@
               {{#each users}}
                 <tr>
                   <td>{{inc @index}}</td>
+                  <td>
+                    <div class='user'>
+                      <span class='avatar'>
+                        <img src='/static/upload/avatars/{{this.user_avatar}}' alt='' />
+                      </span>
+                    </div>
+                  </td>
                   <td>{{this.full_name}}</td>
                   <td>{{this.email}}</td>
                   <td><span class='{{badgeBackground this.role}}'>{{userRole this.role}}</span></td>
                   <td>{{this.created_at}}</td>
                   <td>
-                    <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                        class='fa fa-pencil'
-                      ></i></a>
+                    <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i class='ti-pencil'></i></a>
                     <a href='/admin/users/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                        class='fa fa-trash'
+                        class='ti-trash'
                       ></i></a>
                   </td>
                 </tr>

@@ -3,7 +3,7 @@
     {{#if success}}
       <div class='alert alert-success alert-dismissible fade show' role='alert'>
         {{success}}
-        <button class='close' data-dismiss='alert'><i class='zmdi zmdi-close'></i></button>
+        <button class='close' data-dismiss='alert'><i class='ti-close'></i></button>
       </div>
     {{/if}}
     <div class='box'>
@@ -21,7 +21,6 @@
                 <th>عنوان</th>
                 <th>نویسنده</th>
                 <th>تاریخ انتشار</th>
-                <th>تعداد بازدید</th>
                 <th>عملیات</th>
               </tr>
             </thead>
@@ -32,13 +31,12 @@
                   <td>{{this.title}}</td>
                   <td>{{this.full_name}}</td>
                   <td>{{this.created_at}}</td>
-                  <td>{{this.views}}</td>
                   <td>
                     <a href='/admin/posts/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                        class='fa fa-pencil'
+                        class='ti-pencil'
                       ></i></a>
                     <a href='/admin/posts/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                        class='fa fa-trash'
+                        class='ti-trash'
                       ></i></a>
                   </td>
                 </tr>
