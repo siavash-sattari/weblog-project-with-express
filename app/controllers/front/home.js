@@ -4,7 +4,7 @@ const dateService = require('@services/dateService');
 exports.index = async (req, res) => {
   const page = 'page' in req.query ? parseInt(req.query.page) : 1;
   const perPage = 3;
-  const posts = await postModel.findAll(page, perPage);
+  const posts = await postModel.findAllPostsForPresentInHomepage(page, perPage);
   const totalPosts = await postModel.count();
   const totalPages = Math.ceil(totalPosts / perPage);
 
@@ -18,11 +18,9 @@ exports.index = async (req, res) => {
   };
 
   const postsForPresent = posts.map(post => {
-    post.created_at = dateService.toPersianDate(post.created_at);
-
     const words = post.content.split(' ');
+    post.created_at = dateService.toPersianDate(post.created_at);
     post.excerpt = words.slice(0, 20 - 1).join(' ') + ' ...';
-
     return post;
   });
 
@@ -32,12 +30,19 @@ exports.index = async (req, res) => {
     return post;
   });
 
-  const isAuthor = 'user' in req.session && req.session.user.role == 1 ? true : false;
+  const showPosts = latestPosts.length > 0;
+
+  const isAuthor = 'user' in req.session && req.session.user.role == 1;
+  const isAdmin = 'user' in req.session && req.session.user.role == 2;
+  const showLoginOrRegister = !isAuthor && !isAdmin;
 
   res.frontRender('front/home/index', {
     posts: postsForPresent,
     pagination,
+    showPosts,
     isAuthor,
+    isAdmin,
+    showLoginOrRegister,
     latestPosts: latestPostsForPresent,
     helpers: {
       showDisabled: function (isDisabled, options) {

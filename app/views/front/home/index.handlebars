@@ -6,8 +6,9 @@
         <h2 class=''>
           وبلاگ و مقاله
         </h2>
-        <p class='lead text-muted'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.لورم ایپسوم متن ساختگی
-          با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+        <p class='lead text-muted'>
+          کلاب یک ابزار قدرتمند برای ساخت و مدیریت وبلاگ است و به شما کمک میکند تا با سرعت و سهولت اطلاعات، خاطرات، مطالب و مقالات خود را در اینترنت منتشر کنید.
+        </p>
       </div>
       <div class='col-md-8'>
         <img src='/static/assets/img/blog/blog-banner.jpg' alt='' />
@@ -22,27 +23,37 @@
         {{>sidebar}}
       </div>
       <div class='col-lg-8'>
-        {{#each posts}}
-          <div class='blog-post'>
-            <a href='#'><img class='rounded mb-lg-5 mb-4' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='card image' /></a>
-            <h3 class=''><a href='/p/{{this.slug}}'>{{this.title}}</a></h3>
-            <div class='meta font-lora my-4'>
-              <a href='#'>{{this.full_name}}</a>
-              <span class='meta-separator'></span>
-              <a href='#'>{{this.created_at}}</a>
+        {{#if showPosts}}
+          {{#each posts}}
+            <div class='blog-post'>
+              <h3 style="margin-bottom:2rem;"><a href='/p/{{this.slug}}'>{{this.title}}</a></h3>
+              <a href='/p/{{this.slug}}'><img class='blog-image rounded' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='card image' /></a>
+              <div class='meta font-lora my-4'>
+                <div class='user-wrapper'>
+                  <div class='avatar'>
+                    <img src='/static/upload/avatars/{{this.user_avatar}}' alt='' />
+                  </div>
+                  <div class='info'>
+                    <span>{{this.full_name}}</span> 
+                    <span>{{this.created_at}}</span>
+                  </div>
+                </div>
+              </div>
+              <p>{{{this.excerpt}}}</p>
             </div>
-            <p>{{{this.excerpt}}}</p>
+          {{/each}}
+          <div class='pagination justify-content-center'>
+            <a href='/?page={{pagination.prevPage}}' class='btn btn-dark {{#showDisabled pagination.hasPrevPage}}{{/showDisabled}}'><i class='fa fa-angle-left'></i></a>
+            <div class='h6 mt-2 mx-4'>
+              {{pagination.page}}
+              از
+              {{pagination.totalPages}}
+            </div>
+            <a href='/?page={{pagination.nextPage}}' class='btn btn-dark {{#showDisabled pagination.hasNextPage}}{{/showDisabled}}'><i class='fa fa-angle-right'></i></a>
           </div>
-        {{/each}}
-        <div class='pagination justify-content-center'>
-          <a href='/?page={{pagination.prevPage}}' class='btn btn-dark {{#showDisabled pagination.hasPrevPage}}{{/showDisabled}}'><i class='fa fa-angle-left'></i></a>
-          <div class='h6 mt-2 mx-4'>
-            {{pagination.page}}
-            از
-            {{pagination.totalPages}}
-          </div>
-          <a href='/?page={{pagination.nextPage}}' class='btn btn-dark {{#showDisabled pagination.hasNextPage}}{{/showDisabled}}'><i class='fa fa-angle-right'></i></a>
-        </div>
+        {{else}}
+          <h4>در حال حاضر هیچ مطلبی برای نمایش وجود ندارد 😊</h4>
+        {{/if}}
       </div>
     </div>
   </div>

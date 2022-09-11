@@ -1,46 +1,46 @@
-<div class='blog-widget mb-4'>
-  <form action='/search' method='get'>
-    <div class='form-group'>
-      <div class='icon-field'>
-        <i class='vl-search'></i>
-        <input type='text' name='keyword' class='form-control' placeholder='جستجو' />
+{{#if showPosts}}
+  <div class='blog-widget mb-4'>
+    <form action='/search' method='get'>
+      <div class='form-group'>
+        <div class='icon-field'>
+          <i class='vl-search'></i>
+          <input type='text' name='keyword' class='form-control' placeholder='جستجو' />
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+{{/if}}
 <div class='blog-widget mb-4'>
   <div class='card border-0 mb-md-0 mb-3'>
     <img class='card-img-top' src='/static/assets/img/manager/manager.jpg' alt='card image' />
     <div class='card-body py-4'>
-      <h6 class='mb-2'>سیاوش ستاری - مدیر وبلاگ ادومکس</h6>
+      <h6 class='mb-2'>سیاوش ستاری - مدیر و توسعه دهنده ی وبلاگ</h6>
       <div>
-        <p class='font-lora'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. لورم ایپسوم متن ساختگی با
-          تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
         <div class='p-0 social-links mb-0 mt-4'>
-          <a href='#'><i class='fab fa-facebook-f'></i></a>
-          <a href='#'><i class='fab fa-twitter'></i></a>
-          <a href='#'><i class='fab fa-google-plus-g'></i></a>
-          <a href='#'><i class='fab fa-dribbble'></i></a>
+          <a href='https://www.instagram.com/siavash_sattari_'><i class='ti-instagram'></i></a>
+          <a href='https://www.linkedin.com/in/siavash-sattari1'><i class='ti-linkedin'></i></a>
+          <a href='https://github.com/siavash-sattari'><i class='ti-github'></i></a>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class='blog-widget mb-4'>
-  <h6 class='mb-4'>پست های اخیر</h6>
-
-  {{#each latestPosts}}
-    <div class='card border-0 mb-1'>
-      <div class='card-body row align-items-center'>
-        <div class='col-4'>
-          <a href='#'><img class='card-img' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='' /></a>
-        </div>
-        <div class='col-8'>
-          <h6 class='my-2 font-size-14'><a href='#'>{{this.title}}</a></h6>
-          <span class='font-size-14 text-muted'>{{this.created_at}}</span>
+  {{#if showPosts}}
+    <h6 class='mb-4'>پست های اخیر</h6>
+    {{#each latestPosts}}
+      <div class='card border-0 mb-1'>
+        <div class='card-body row align-items-center'>
+          <div class='col-4'>
+            <a href='#'><img class='card-img' src='/static/upload/thumbnails/{{this.thumbnail}}' alt='' /></a>
+          </div>
+          <div class='col-8 single-latest-post'>
+            <h6 class='my-2 font-size-14'><a href='#'>{{{this.full_name}}}</a></h6>
+            <h6 class='my-2 font-size-14'><a href='#'>{{this.title}}</a></h6>
+            <span class='font-size-14 text-muted'>{{this.created_at}}</span>
+          </div>
         </div>
       </div>
-    </div>
-  {{/each}}
-
+    {{/each}}
+  {{/if}}
 </div>

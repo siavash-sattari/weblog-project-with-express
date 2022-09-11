@@ -17,7 +17,12 @@
             {{#if isAuthor}}
               <li><a href='/admin/posts/create'>ایجاد پست جدید</a></li>
               <li><a href='/logout'>خروج</a></li>
-            {{else}}
+            {{/if}}
+            {{#if isAdmin}}
+              <li><a href='/admin/dashboard'>پنل مدیریت</a></li>
+              <li><a href='/logout'>خروج</a></li>
+            {{/if}}
+            {{#if showLoginOrRegister}}
               <li><a href='/auth/login'>ورود</a></li>
               <li><a href='/auth/register'>ثبت نام</a></li>
             {{/if}}

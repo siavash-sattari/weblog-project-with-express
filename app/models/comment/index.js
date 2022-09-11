@@ -62,7 +62,7 @@ exports.latestComments = async (limit = 10) => {
   `
   SELECT c.*,p.title
   FROM comments c 
-  JOIN posts p ON c.post_id = p.id
+  JOIN posts p ON c.post_id = p.id AND c.status=2
   ORDER BY created_at DESC
   LIMIT ${limit}
   `

@@ -103,9 +103,10 @@ exports.edit = async (req, res) => {
 
 exports.update = async (req, res) => {
   const postID = req.params.postID;
+  const post = await postModel.find(postID);
 
   let fileExt = '';
-  let newFileName = '';
+  let newFileName = post.thumbnail;
 
   if (req.files) {
     fileExt = req.files.thumbnail.name.split('.')[1];
@@ -132,7 +133,7 @@ exports.update = async (req, res) => {
     return res.redirect(`/admin/posts/edit/${postID}`);
   }
 
-  if (req.files.thumbnail) {
+  if (req.files) {
     const fileNewPath = `${process.cwd()}/public/upload/thumbnails/${newFileName}`;
     req.files.thumbnail.mv(fileNewPath, err => {
       console.log(err);
