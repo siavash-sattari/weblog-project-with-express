@@ -1,13 +1,10 @@
 <div class='d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12'>
   <div class='login-register-form-wrap'>
-
     <div class='content'>
       <h1>ثبت نام</h1>
       <p>در این بخش میتوانید در وبسایت ثبت نام کنید</p>
     </div>
-
     <div class='login-register-form'>
-
       {{#if hasError}}
         {{#each errors}}
           <div class='alert alert-danger' role='alert'>
@@ -16,16 +13,14 @@
           </div>
         {{/each}}
       {{/if}}
-
       <form action='/auth/register' method='POST' enctype='multipart/form-data'>
         <div class='row'>
-
           <div class='col-12 mb-20'><input name='full_name' class='form-control' type='text' placeholder='نام و نام خانوادگی' /></div>
           <div class='col-12 mb-20'><input name='email' class='form-control' type='text' placeholder='ایمیل' /></div>
           <div class='col-12 mb-20'><input name='password' class='form-control' type='password' placeholder='رمز عبور' /></div>
           <div class='col-12 mb-20'>
             <label for='user_avatar' class='mb-20'>تصویر پروفایل :</label>
-            <input name='user_avatar' type='file' id="user_avatar" class='form-control'/>
+            <input name='user_avatar' type='file' id='user_avatar' class='form-control' />
           </div>
           <div class='col-12'>
             <div class='row justify-content-between'>
@@ -35,11 +30,9 @@
           <div class='col-12 mt-10'><button class='button button-primary button-outline'>ثبت نام</button></div>
         </div>
       </form>
-
     </div>
   </div>
 </div>
-
 <div class='login-register-bg order-1 order-lg-2 col-lg-7 col-12'>
   <div class='content'>
     <h1>ثبت نام</h1>

@@ -12619,7 +12619,7 @@ body.side-header-green .side-header .side-header-close {
 
 /*Wrror 2 Wrapper*/
 .error-wrap-2 {
-  background-image: url(../images/error/error-2.png);
+  background-image: url(../images/error/404.png);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

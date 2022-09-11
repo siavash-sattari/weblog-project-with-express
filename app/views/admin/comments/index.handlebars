@@ -1,51 +1,49 @@
 <div class='row mbn-30'>
-  <!--Table Head Dark Start-->
   <div class='col-12 mb-30'>
     <div class='box'>
       <div class='box-head'>
         <h4 class='title'>دیدگاه ها</h4>
       </div>
       <div class='box-body'>
-        <table class='table'>
-          <thead class='thead-dark'>
-            <tr>
-              <th>نویسنده</th>
-              <th>دیدگاه</th>
-              <th>در پاسخ به</th>
-              <th>ارسال شده</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each comments}}
-              <tr class='comment-row {{commentBackground this.status}}'>
-                <td>
-                  <div class='user'>
-                    <span class='avatar'>
-                      <img src='{{this.userAvatar}}' alt='' />
-                    </span>
-                    <span class='name'>{{this.user_name}}</span>
-                  </div>
-                </td>
-
-                <td>
-                  <div class='comment'>
-                    <p>{{this.comment}}</p>
-                    <div class='buttons'>
-                      <a href='/admin/comments/approve/{{this.id}}' class='button button-success button-xs'><span>تایید</span></a>
-                      <a href='/admin/comments/reject/{{this.id}}' class='button button-warning button-xs'><span>رد</span></a>
-                      <a href='/admin/comments/delete/{{this.id}}' class='button button-danger button-xs'><span>حذف</span></a>
-                    </div>
-                  </div>
-                </td>
-
-                <td>{{this.title}}</td>
-                <td>{{this.created_at}}</td>
+        <div class='table-responsive'>
+          <table class='table table-vertical-middle'>
+            <thead class='thead-dark'>
+              <tr>
+                <th>نویسنده</th>
+                <th>دیدگاه</th>
+                <th>در پاسخ به</th>
+                <th>ارسال شده</th>
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {{#each comments}}
+                <tr class='comment-row {{commentBackground this.status}}'>
+                  <td>
+                    <div class='user'>
+                      <span class='avatar'>
+                        <img src='{{this.userAvatar}}' alt='' />
+                      </span>
+                      <span class='name'>{{this.user_name}}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class='comment'>
+                      <p>{{this.comment}}</p>
+                      <div class='buttons'>
+                        <a href='/admin/comments/approve/{{this.id}}' class='button button-success button-xs'><span>تایید</span></a>
+                        <a href='/admin/comments/reject/{{this.id}}' class='button button-warning button-xs'><span>رد</span></a>
+                        <a href='/admin/comments/delete/{{this.id}}' class='button button-danger button-xs'><span>حذف</span></a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{this.title}}</td>
+                  <td>{{this.created_at}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-  <!--Table Head Dark End-->
 </div>

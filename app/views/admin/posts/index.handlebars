@@ -13,37 +13,39 @@
       </div>
 
       <div class='box-body'>
-        <table class='table'>
-          <thead class='thead-dark'>
-            <tr>
-              <th>#</th>
-              <th>عنوان</th>
-              <th>نویسنده</th>
-              <th>تاریخ انتشار</th>
-              <th>تعداد بازدید</th>
-              <th>عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each posts}}
+        <div class='table-responsive'>
+          <table class='table table-vertical-middle'>
+            <thead class='thead-dark'>
               <tr>
-                <td>{{inc @index}}</td>
-                <td>{{this.title}}</td>
-                <td>{{this.full_name}}</td>
-                <td>{{this.created_at}}</td>
-                <td>{{this.views}}</td>
-                <td>
-                  <a href='/admin/posts/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                      class='fa fa-pencil'
-                    ></i></a>
-                  <a href='/admin/posts/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                      class='fa fa-trash'
-                    ></i></a>
-                </td>
+                <th>#</th>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>تاریخ انتشار</th>
+                <th>تعداد بازدید</th>
+                <th>عملیات</th>
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {{#each posts}}
+                <tr>
+                  <td>{{inc @index}}</td>
+                  <td>{{this.title}}</td>
+                  <td>{{this.full_name}}</td>
+                  <td>{{this.created_at}}</td>
+                  <td>{{this.views}}</td>
+                  <td>
+                    <a href='/admin/posts/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                        class='fa fa-pencil'
+                      ></i></a>
+                    <a href='/admin/posts/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                        class='fa fa-trash'
+                      ></i></a>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

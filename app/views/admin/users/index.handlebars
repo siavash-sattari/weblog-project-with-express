@@ -12,37 +12,39 @@
         <button class='button button-primary'><a href='/admin/users/create'>ایجاد کاربر جدید</a></button>
       </div>
       <div class='box-body'>
-        <table class='table'>
-          <thead class='thead-dark'>
-            <tr>
-              <th>#</th>
-              <th>نام</th>
-              <th>ایمیل</th>
-              <th>نقش کاربری</th>
-              <th>تاریخ ایجاد</th>
-              <th>عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each users}}
+        <div class='table-responsive'>
+          <table class='table table-vertical-middle'>
+            <thead class='thead-dark'>
               <tr>
-                <td>{{inc @index}}</td>
-                <td>{{this.full_name}}</td>
-                <td>{{this.email}}</td>
-                <td><span class="{{badgeBackground this.role}}">{{userRole this.role}}</span></td>
-                <td>{{this.created_at}}</td>
-                <td>
-                  <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                      class='fa fa-pencil'
-                    ></i></a>
-                  <a href='/admin/users/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                      class='fa fa-trash'
-                    ></i></a>
-                </td>
+                <th>#</th>
+                <th>نام</th>
+                <th>ایمیل</th>
+                <th>نقش کاربری</th>
+                <th>تاریخ ایجاد</th>
+                <th>عملیات</th>
               </tr>
-            {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {{#each users}}
+                <tr>
+                  <td>{{inc @index}}</td>
+                  <td>{{this.full_name}}</td>
+                  <td>{{this.email}}</td>
+                  <td><span class='{{badgeBackground this.role}}'>{{userRole this.role}}</span></td>
+                  <td>{{this.created_at}}</td>
+                  <td>
+                    <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                        class='fa fa-pencil'
+                      ></i></a>
+                    <a href='/admin/users/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
+                        class='fa fa-trash'
+                      ></i></a>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
