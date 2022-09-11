@@ -3426,7 +3426,7 @@ blog
 }
 
 .blog-single p {
-  margin-bottom: 3rem;
+  margin-bottom: 0rem;
 }
 
 .single-post .comments-area,
@@ -3883,7 +3883,7 @@ utilities
 
   overflow: hidden;
 
-  padding: 4rem 0;
+  padding: 3rem 0 0 0;
 }
 
 .show-markup-section {
@@ -3984,8 +3984,8 @@ utilities
 }
 
 .avatar-lg {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
 }
 
 .icon-sm {
@@ -4091,7 +4091,7 @@ utilities
 
 @media (max-width: 991px) {
   .component-section {
-    padding: 3rem 0;
+    padding: 1rem 0;
   }
 }
 
@@ -4321,4 +4321,56 @@ utilities
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.section-gap2 {
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 769px) {
+  .section-gap2 {
+    padding-top: 4.5rem;
+  }
+}
+
+.section-gap2 .hero-img {
+  margin-top: 3rem;
+}
+
+.section-gap2 h2 {
+  margin-top: 4rem;
+}
+
+.section-gap-3 {
+  padding-top: 2rem;
+}
+
+@media (max-width: 576px) {
+  .section-gap-3 {
+    padding-top: 1rem;
+  }
+  .comments,
+  .comments-title {
+    margin-bottom: 2rem !important;
+  }
+}
+
+.section-gap-4 {
+  padding-top: 2rem;
+}
+
+.author-image {
+  margin: 0 1.1rem;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.blog-post-2 {
+  margin-bottom: 1.5rem;
 }

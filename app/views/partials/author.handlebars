@@ -1,15 +1,14 @@
 <div class='component-section'>
   <div class='container'>
-    <div class='row justify-content-center'>
+    <div class='row'>
       <div class='col-lg-8'>
         <div class='row'>
-          <div class='col-md-3 text-md-center'>
-            <img class='avatar-lg rounded-circle mb-3 d-inline-block' src='{{post.author.avatar}}' alt='توماس جانسون' />
+          <div class='author-image'>
+            <img class='avatar-lg rounded-circle mb-3 d-inline-block' src='/static/upload/avatars/{{post.author.user_avatar}}' alt='توماس جانسون' />
           </div>
-          <div class='col-md-9'>
-            <h5 class="class='font-lora font-weight-normal mb-4'">{{post.author.description}}</h5>
-            <div class='border-left mb-3'> &nbsp;</div>
-            <strong class='text-primary'>{{post.author.full_name}}</strong>
+          <div class='author-info'>
+            <h4>{{post.author.full_name}}</h4>
+            <h6 class="class='font-lora font-weight-normal mb-4'">{{post.author.description}}</h6>
           </div>
         </div>
       </div>

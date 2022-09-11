@@ -14,7 +14,7 @@ exports.showPost = async (req, res) => {
   }
 
   const user = await userModel.find(post.author_id);
-  user.avatar = userService.gravatar(user.email);
+  user.avatar = user.user_avatar;
   post.author = user;
 
   post.created_at = dateService.toPersianDate(post.created_at);
@@ -27,10 +27,12 @@ exports.showPost = async (req, res) => {
     return comment;
   });
 
+  const showComments = presentedComments.length > 0;
   const newComments = _.groupBy(presentedComments, 'parent');
 
   res.frontRender('front/post/single', {
     post,
+    showComments,
     comments: newComments[0],
     bodyClass: 'single-post',
     helpers: {

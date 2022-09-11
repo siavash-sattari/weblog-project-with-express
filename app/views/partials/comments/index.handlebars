@@ -1,10 +1,14 @@
-<section class='section-gap'>
+<section class='section-gap-4'>
   <div class='container'>
-    <div class='row justify-content-center'>
-      <div class='col-lg-8'>
+    <div class='row'>
+      <div class='col-lg-12'>
         <div class='comments'>
-          <h2 class='comments-title'> نظرات</h2>
-          {{>comments/list comments=this.comments}}
+          {{#if showComments}}
+            <h2 class='comments-title'>نظرات</h2>
+            {{>comments/list comments=this.comments}}
+          {{else}}
+            <h2 class='comments-title'>تا کنون هیچ نظری برای این پست ثبت نشده است 😊</h2>
+          {{/if}}
         </div>
         <div class='comment-respond'>
           <h3 class='comment-reply-title mb-lg-5 mb-4'>
