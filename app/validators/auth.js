@@ -1,7 +1,7 @@
 const EMAIL_PATTERN =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-exports.register = request => {
+exports.register = (request, usersEmail) => {
   const errors = [];
 
   if (request.full_name === '') {
@@ -22,6 +22,10 @@ exports.register = request => {
 
   if (request.email.length > 0 && !EMAIL_PATTERN.test(request.email)) {
     errors.push('فرمت ایمیل وارد شده صحیح نمیباشد');
+  }
+
+  if (EMAIL_PATTERN.test(request.email) && usersEmail.includes(request.email)) {
+    errors.push('ایمیل وارد شده تکراری میباشد');
   }
 
   return errors;

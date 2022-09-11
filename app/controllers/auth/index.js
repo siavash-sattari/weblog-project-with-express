@@ -1,5 +1,6 @@
 const authService = require('@services/authService');
 const userRoles = require('@models/userRoles');
+const userModel = require('@models/user');
 const authValidator = require('@validators/auth');
 const { v4: uuidv4 } = require('uuid');
 
@@ -24,6 +25,8 @@ exports.showRegister = (req, res) => {
 };
 
 exports.doRegister = async (req, res) => {
+  const allEmails = await userModel.findAll(['email']);
+  const usersEmail = allEmails.map(e => e.email);
   let fileExt = '';
   let newFileName = '';
 
@@ -41,7 +44,7 @@ exports.doRegister = async (req, res) => {
     user_avatar: newFileName
   };
 
-  const errors = authValidator.register(userData);
+  const errors = authValidator.register(userData, usersEmail);
   if (errors.length > 0) {
     req.flash('errors', errors);
     return res.redirect('/auth/register');

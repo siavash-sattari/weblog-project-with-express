@@ -56,6 +56,8 @@ exports.create = async (req, res) => {
 };
 
 exports.store = async (req, res) => {
+  const allEmails = await userModel.findAll(['email']);
+  const usersEmail = allEmails.map(e => e.email);
   let fileExt = '';
   let newFileName = '';
 
@@ -74,7 +76,7 @@ exports.store = async (req, res) => {
     role: req.body.role
   };
 
-  const errors = userValidator.create(userData);
+  const errors = userValidator.create(userData,usersEmail);
   if (errors.length > 0) {
     req.flash('errors', errors);
     return res.redirect('/admin/users/create');
