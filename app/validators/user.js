@@ -1,7 +1,7 @@
 const EMAIL_PATTERN =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-exports.create = (request, usersEmail) => {
+exports.create = (request, usersEmail, userEmail = '') => {
   const errors = [];
 
   if (request.full_name === '') {
@@ -28,7 +28,12 @@ exports.create = (request, usersEmail) => {
     errors.push('فرمت ایمیل وارد شده صحیح نمیباشد');
   }
 
-  if (EMAIL_PATTERN.test(request.email) && usersEmail.includes(request.email)) {
+  if (EMAIL_PATTERN.test(request.email) && usersEmail.includes(request.email) && !userEmail) {
+    errors.push('ایمیل وارد شده تکراری میباشد');
+  }
+
+  // To avoid checking the user's email for duplicates when editing the user
+  if (EMAIL_PATTERN.test(request.email) && usersEmail.includes(request.email) && userEmail !== request.email) {
     errors.push('ایمیل وارد شده تکراری میباشد');
   }
 

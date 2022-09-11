@@ -149,6 +149,9 @@ exports.update = async (req, res) => {
     user = currentUser;
   }
 
+  const allEmails = await userModel.findAll(['email']);
+  const usersEmail = allEmails.map(e => e.email);
+
   let fileExt = '';
   let newFileName = user.user_avatar;
 
@@ -160,6 +163,8 @@ exports.update = async (req, res) => {
   if (parseInt(userID) === 0) {
     res.redirect('/admin/users');
   }
+
+  const userEmail = user.email;
 
   const userData = {
     full_name: req.body.full_name,
@@ -181,7 +186,8 @@ exports.update = async (req, res) => {
     user.role = req.body.role;
   }
 
-  const errors = userValidator.create(userData);
+  // We passed the third argument to avoid checking the duplicateness of the user's email
+  const errors = userValidator.create(userData, usersEmail,userEmail);
 
   if (errors.length > 0) {
     req.flash('errors', errors);
