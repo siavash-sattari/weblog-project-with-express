@@ -70,11 +70,17 @@ exports.search = async (req, res) => {
   });
 
   const showPosts = posts.length > 0;
+  const isAuthor = 'user' in req.session && req.session.user.role == 1;
+  const isAdmin = 'user' in req.session && req.session.user.role == 2;
+  const showLoginOrRegister = !isAuthor && !isAdmin;
 
   res.frontRender('front/home/search', {
     keyword,
     showPosts,
     posts: postsForPresent,
-    latestPosts: latestPostsForPresent
+    latestPosts: latestPostsForPresent,
+    isAuthor,
+    isAdmin,
+    showLoginOrRegister
   });
 };
