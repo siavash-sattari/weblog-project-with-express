@@ -4,13 +4,13 @@
       <article class='comment-body'>
         <footer class='comment-meta'>
           <div class='comment-author'>
-            <img alt='' src='{{this.avatar}}' class='' />
+            {{!-- <img alt='' src='{{this.avatar}}' class='' /> --}}
+            <img alt='' src='/static/assets/images/error/fallback-image.jpg' class='' />
             <b class='fn'>
-              <a href='#' rel='external nofollow' class='url'>
+              <h5 rel='external nofollow' class='url'>
                 {{this.user_name}}
-              </a>
+              </h5>
             </b>
-            <span class='says'>گفته:</span>
           </div>
 
           <div class='comment-metadata'>
@@ -27,9 +27,9 @@
           <p>{{this.comment}}</p>
         </div>
 
-        <div class='reply'>
+        {{!-- <div class='reply'>
           <a rel='nofollow' class='comment-reply-link' href='#'>پاسخ</a>
-        </div>
+        </div> --}}
       </article>
 
       {{#if (hasChildren this.id)}}

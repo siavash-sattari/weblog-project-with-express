@@ -53,7 +53,9 @@ exports.index = async (req, res) => {
 };
 
 exports.search = async (req, res) => {
-  const posts = await postModel.findByKeyword(req.query.keyword);
+  const keyword = req.query.keyword;
+
+  const posts = await postModel.findByKeyword(keyword);
   const postsForPresent = posts.map(post => {
     post.created_at = dateService.toPersianDate(post.created_at);
     const words = post.content.split(' ');
@@ -61,7 +63,18 @@ exports.search = async (req, res) => {
     return post;
   });
 
+  const latestPosts = await postModel.latestPosts(3);
+  const latestPostsForPresent = latestPosts.map(post => {
+    post.created_at = dateService.toPersianDate(post.created_at);
+    return post;
+  });
+
+  const showPosts = posts.length > 0;
+
   res.frontRender('front/home/search', {
-    posts: postsForPresent
+    keyword,
+    showPosts,
+    posts: postsForPresent,
+    latestPosts: latestPostsForPresent
   });
 };

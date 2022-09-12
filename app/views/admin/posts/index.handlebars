@@ -20,7 +20,7 @@
                 <th>#</th>
                 <th>عنوان</th>
                 <th>نویسنده</th>
-                <th>تاریخ انتشار</th>
+                <th>وضعیت انتشار</th>
                 <th>عملیات</th>
               </tr>
             </thead>
@@ -30,7 +30,7 @@
                   <td>{{inc @index}}</td>
                   <td>{{this.title}}</td>
                   <td>{{this.full_name}}</td>
-                  <td>{{this.created_at}}</td>
+                  <td><span class='{{badgeBackground this.status}}'>{{postStatus this.status}}</span></td>
                   <td>
                     <a href='/admin/posts/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
                         class='ti-pencil'

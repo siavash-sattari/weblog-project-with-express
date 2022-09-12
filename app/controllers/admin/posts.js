@@ -19,7 +19,41 @@ exports.index = async (req, res) => {
     return post;
   });
 
-  res.adminRender('admin/posts/index', { posts: presentedPosts });
+  res.adminRender('admin/posts/index', {
+    posts: presentedPosts,
+    helpers: {
+      badgeBackground: function (status) {
+        let cssClass = '';
+        switch (true) {
+          case status === 0:
+            cssClass = 'badge badge-danger';
+            break;
+          case status === 1:
+            cssClass = 'badge badge-info';
+            break;
+          case status === 2:
+            cssClass = 'badge badge-success';
+            break;
+        }
+        return cssClass;
+      },
+      postStatus: function (status) {
+        let pStatus = '';
+        switch (true) {
+          case status === 0:
+            pStatus = 'پیش نویس';
+            break;
+          case status === 1:
+            pStatus = 'در حال بازبینی';
+            break;
+          case status === 2:
+            pStatus = 'منتشر شده';
+            break;
+        }
+        return pStatus;
+      }
+    }
+  });
 };
 
 exports.create = async (req, res) => {

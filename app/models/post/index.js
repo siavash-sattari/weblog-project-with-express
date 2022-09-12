@@ -88,10 +88,9 @@ exports.findBySlug = async postSlug => {
 exports.findByKeyword = async keyword => {
   const [rows] = await db.query(
     `
-  SELECT p.*,u.full_name 
+  SELECT p.*,u.full_name,u.user_avatar 
   FROM posts p 
-  LEFT JOIN users u ON p.author_id = u.id
-  WHERE p.title LIKE ?
+  JOIN users u ON p.author_id = u.id AND p.status=2 AND p.title LIKE ?
   ORDER BY p.created_at DESC
   `,
     ['%' + keyword + '%']

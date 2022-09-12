@@ -71,8 +71,8 @@
               <tr>
                 {{#if areThereAnyComments}}
                   <th>کاربر</th>
-                  <th>دیدگاه</th>
                   <th>ایمیل</th>
+                  <th>دیدگاه</th>
                   <th>در پاسخ به</th>
                   <th>ارسال شده</th>
                 {{/if}}
@@ -83,10 +83,10 @@
                 {{#each latestComments}}
                   <tr>
                     <td class='fw-600'>{{this.user_name}}</td>
+                    <td class='fw-600'>{{this.user_email}}</td>
                     <td>
                       <p>{{this.comment}}</p>
                     </td>
-                    <td class='fw-600'>{{this.user_email}}</td>
                     <td class='fw-600'>{{this.title}}</td>
                     <td class='fw-600'>{{this.created_at}}</td>
                   </tr>
