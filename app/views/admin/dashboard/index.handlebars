@@ -27,7 +27,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد کاربران</h4>
-          <span class='view'><i class='ti-eye'></i></span>
+          <span class='view'><i class='ti-user'></i></span>
         </div>
         <div class='content'>
           <h2>{{totlaUsers}}</h2>
@@ -38,7 +38,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد مطالب</h4>
-          <span class='view'><i class='ti-eye'></i></span>
+          <span class='view'><i class='ti-pencil-alt'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalPosts}}</h2>
@@ -49,7 +49,7 @@
       <div class='top-report'>
         <div class='head'>
           <h4>تعداد دیدگاه ها</h4>
-          <span class='view'><i class='ti-eye'></i></span>
+          <span class='view'><i class='ti-comments'></i></span>
         </div>
         <div class='content'>
           <h2>{{totalComments}}</h2>
@@ -70,6 +70,7 @@
             <thead>
               <tr>
                 {{#if areThereAnyComments}}
+                  <th>#</th>
                   <th>کاربر</th>
                   <th>ایمیل</th>
                   <th>دیدگاه</th>
@@ -82,6 +83,7 @@
               {{#if areThereAnyComments}}
                 {{#each latestComments}}
                   <tr>
+                    <td>{{inc @index}}</td>
                     <td class='fw-600'>{{this.user_name}}</td>
                     <td class='fw-600'>{{this.user_email}}</td>
                     <td>

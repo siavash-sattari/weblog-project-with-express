@@ -9,6 +9,7 @@
           <table class='table table-vertical-middle'>
             <thead class='thead-dark'>
               <tr>
+                <th>#</th>
                 <th>نویسنده</th>
                 <th>ایمیل</th>
                 <th>دیدگاه</th>
@@ -19,6 +20,7 @@
             <tbody>
               {{#each comments}}
                 <tr class='comment-row {{commentBackground this.status}}'>
+                  <td>{{inc @index}}</td>
                   <td>
                     <div class='user'>
                       {{!-- <span class='avatar'>
