@@ -6,12 +6,12 @@ exports.totalUsers = async () => {
 };
 
 exports.totalComments = async () => {
-  const [result] = await db.query('SELECT COUNT(id) as totalComments FROM comments');
+  const [result] = await db.query('SELECT COUNT(id) as totalComments FROM comments WHERE status = 2');
   return result[0].totalComments;
 };
 
 exports.totalPosts = async () => {
-  const [result] = await db.query('SELECT COUNT(id) as totalPosts FROM posts');
+  const [result] = await db.query('SELECT COUNT(id) as totalPosts FROM posts WHERE status = 2');
   return result[0].totalPosts;
 };
 

@@ -30,11 +30,14 @@ exports.showPost = async (req, res) => {
   const showComments = presentedComments.length > 0;
   const newComments = _.groupBy(presentedComments, 'parent');
 
+  const isSinglePostPage = true;
+
   res.frontRender('front/post/single', {
     post,
     showComments,
     comments: newComments[0],
     bodyClass: 'single-post',
+    isSinglePostPage,
     helpers: {
       hasChildren: function (commentID, options) {
         return commentID in newComments;
