@@ -54,7 +54,7 @@ exports.findAuthorBlogs = async (userID, page = 1, perPage = 10) => {
 };
 
 exports.count = async () => {
-  const [rows, fields] = await db.query(`SELECT COUNT(id) as postsCount FROM posts`);
+  const [rows, fields] = await db.query(`SELECT COUNT(id) as postsCount FROM posts WHERE status = 2`);
   return rows[0].postsCount;
 };
 
