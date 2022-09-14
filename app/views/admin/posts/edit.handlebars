@@ -26,18 +26,21 @@
                 <label class='mb-20' for="slug">نامک مطلب :</label>
                 <input name='slug' type='text' value='{{post.slug}}' id='slug' class='form-control' placeholder='نامک مطلب' />
               </div>
-              {{#if isAdmin}}
               <div class='col-12 mb-30'>
                 <label for='author_name' class='mb-20'>نام نویسنده :</label>
-                <select name='author' class='form-control' id='author_name'>
-                  {{#each users}}
-                    <option value='{{this.id}}' {{#isPostAuthor this.id}}selected{{/isPostAuthor}}>
-                      {{this.full_name}}
-                    </option>
-                  {{/each}}
+                <select name='author_id' class='form-control' id='author_name'>
+                  {{#if author}}
+                    <option value='{{author.id}}'>{{author.full_name}}</option>
+                  {{/if}}
+                  {{#if isAdmin}}
+                    {{#each users}}
+                      <option value='{{this.id}}' {{#isPostAuthor this.id}}selected{{/isPostAuthor}}>
+                        {{this.full_name}}
+                      </option>
+                    {{/each}}
+                  {{/if}}
                 </select>
               </div>
-              {{/if}}
               <div class='col-12 mb-30'>
                 <label class='mb-20'>تصویر مطلب :</label>
                 <div class="post-thumbnail"><img src="/static/upload/thumbnails/{{post.thumbnail}}" /></div>

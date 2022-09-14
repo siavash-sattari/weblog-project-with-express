@@ -17,9 +17,12 @@ exports.index = async (req, res) => {
     comment.created_at = dateService.toPersianDate(comment.created_at);
     return comment;
   });
+
+  const areThereAnyComments = comments.length > 0;
   res.adminRender('admin/comments/index', {
     layout: 'admin',
     comments: presentedComments,
+    areThereAnyComments,
     helpers: {
       commentBackground: function (status, options) {
         let cssClass = 'alert ';

@@ -9,41 +9,47 @@
           <table class='table table-vertical-middle'>
             <thead class='thead-dark'>
               <tr>
-                <th>#</th>
-                <th>نویسنده</th>
-                <th>ایمیل</th>
-                <th>دیدگاه</th>
-                <th>در پاسخ به</th>
-                <th>ارسال شده</th>
+                {{#if areThereAnyComments}}
+                  <th>#</th>
+                  <th>نویسنده</th>
+                  <th>ایمیل</th>
+                  <th>دیدگاه</th>
+                  <th>در پاسخ به</th>
+                  <th>ارسال شده</th>
+                {{/if}}
               </tr>
             </thead>
             <tbody>
-              {{#each comments}}
-                <tr class='comment-row {{commentBackground this.status}}'>
-                  <td>{{inc @index}}</td>
-                  <td>
-                    <div class='user'>
-                      {{!-- <span class='avatar'>
+              {{#if areThereAnyComments}}
+                {{#each comments}}
+                  <tr class='comment-row {{commentBackground this.status}}'>
+                    <td>{{inc @index}}</td>
+                    <td>
+                      <div class='user'>
+                        {{!-- <span class='avatar'>
                         <img src='{{this.userAvatar}}' alt='' />
                       </span> --}}
-                      <span class='name'>{{this.user_name}}</span>
-                    </div>
-                  </td>
-                  <td>{{this.user_email}}</td>
-                  <td>
-                    <div class='comment'>
-                      <p>{{this.comment}}</p>
-                      <div class='buttons'>
-                        <a href='/admin/comments/approve/{{this.id}}' class='button button-success button-xs'><span>تایید</span></a>
-                        <a href='/admin/comments/reject/{{this.id}}' class='button button-warning button-xs'><span>رد</span></a>
-                        <a href='/admin/comments/delete/{{this.id}}' class='button button-danger button-xs'><span>حذف</span></a>
+                        <span class='name'>{{this.user_name}}</span>
                       </div>
-                    </div>
-                  </td>
-                  <td>{{this.title}}</td>
-                  <td>{{this.created_at}}</td>
-                </tr>
-              {{/each}}
+                    </td>
+                    <td>{{this.user_email}}</td>
+                    <td>
+                      <div class='comment'>
+                        <p>{{this.comment}}</p>
+                        <div class='buttons'>
+                          <a href='/admin/comments/approve/{{this.id}}' class='button button-success button-xs'><span>تایید</span></a>
+                          <a href='/admin/comments/reject/{{this.id}}' class='button button-warning button-xs'><span>رد</span></a>
+                          <a href='/admin/comments/delete/{{this.id}}' class='button button-danger button-xs'><span>حذف</span></a>
+                        </div>
+                      </div>
+                    </td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.created_at}}</td>
+                  </tr>
+                {{/each}}
+              {{else}}
+                <p>در حال حاضر هیچ دیدگاهی برای نمایش وجود ندارد</p>
+              {{/if}}
             </tbody>
           </table>
         </div>

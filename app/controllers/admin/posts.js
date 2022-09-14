@@ -19,8 +19,11 @@ exports.index = async (req, res) => {
     return post;
   });
 
+  const areThereAnyPosts = presentedPosts.length > 0;
+
   res.adminRender('admin/posts/index', {
     posts: presentedPosts,
+    areThereAnyPosts,
     helpers: {
       badgeBackground: function (status) {
         let cssClass = '';
@@ -58,8 +61,9 @@ exports.index = async (req, res) => {
 
 exports.create = async (req, res) => {
   const users = await userModel.findAll(['id', 'full_name']);
+  const author = 'user' in req.session && req.session.user.role == 1 ? req.session.user : null;
   const isAdmin = 'user' in req.session && req.session.user.role == 2 ? req.session.user : null;
-  res.adminRender('admin/posts/create', { users, isAdmin });
+  res.adminRender('admin/posts/create', { users, author, isAdmin });
 };
 
 exports.store = async (req, res) => {
@@ -117,11 +121,13 @@ exports.edit = async (req, res) => {
   }
   const post = await postModel.find(postID);
   const users = await userModel.findAll(['id', 'full_name']);
+  const author = 'user' in req.session && req.session.user.role == 1 ? req.session.user : null;
   const isAdmin = 'user' in req.session && req.session.user.role == 2 ? req.session.user : null;
   res.adminRender('admin/posts/edit', {
     layout: 'admin',
     users,
     post,
+    author,
     isAdmin,
     postStatus: statuses(),
     helpers: {
@@ -153,7 +159,7 @@ exports.update = async (req, res) => {
 
   const postData = {
     title: req.body.title,
-    author_id: req.body.author,
+    author_id: req.body.author_id,
     slug: req.body.slug,
     content: req.body.content,
     status: req.body.status,
