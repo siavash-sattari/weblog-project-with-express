@@ -37,7 +37,7 @@ exports.totalAuthorPosts = async userID => {
     `
   SELECT COUNT(id) as totalPosts 
   FROM posts p 
-  WHERE p.author_id = ?
+  WHERE p.author_id = ? AND p.status = 2
   `,
     [userID]
   );
