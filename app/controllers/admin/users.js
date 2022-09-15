@@ -46,7 +46,16 @@ exports.index = async (req, res) => {
             break;
         }
         return uRole;
-      }
+      },
+      hideTrashIcon: function (role) {
+        let cssClass = '';
+        switch (true) {
+          case role === 2:
+            cssClass = 'hide-trash-icon';
+            break;
+        }
+        return cssClass;
+      },
     }
   });
 };

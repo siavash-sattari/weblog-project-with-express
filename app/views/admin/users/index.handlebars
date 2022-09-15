@@ -42,9 +42,11 @@
                   <td>{{this.created_at}}</td>
                   <td>
                     <a href='/admin/users/edit/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i class='ti-pencil'></i></a>
-                    <a href='/admin/users/delete/{{this.id}}' style='font-size: 17px; cursor: pointer; margin-right: 15px'><i
-                        class='ti-trash'
-                      ></i></a>
+                    <a
+                      href='/admin/users/delete/{{this.id}}'
+                      class='{{hideTrashIcon this.role}}'
+                      style='font-size: 17px; cursor: pointer; margin-right: 15px'
+                    ><i class='ti-trash'></i></a>
                   </td>
                 </tr>
               {{/each}}

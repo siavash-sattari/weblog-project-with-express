@@ -19140,3 +19140,7 @@ td div.comment {
 td div.button {
   font-size: 6px;
 }
+
+.hide-trash-icon{
+  display:none;
+}
