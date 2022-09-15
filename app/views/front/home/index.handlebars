@@ -43,13 +43,13 @@
             </div>
           {{/each}}
           <div class='pagination justify-content-center'>
-            <a href='/?page={{pagination.prevPage}}' class='btn btn-dark {{#showDisabled pagination.hasPrevPage}}{{/showDisabled}}'><i class='fa fa-angle-left'></i></a>
+            <a href='/?page={{pagination.prevPage}}' class='btn btn-dark {{#showDisabled pagination.hasPrevPage}}{{/showDisabled}}'><i class='ti-angle-right'></i></a>
             <div class='h6 mt-2 mx-4'>
               {{pagination.page}}
               از
               {{pagination.totalPages}}
             </div>
-            <a href='/?page={{pagination.nextPage}}' class='btn btn-dark {{#showDisabled pagination.hasNextPage}}{{/showDisabled}}'><i class='fa fa-angle-right'></i></a>
+            <a href='/?page={{pagination.nextPage}}' class='btn btn-dark {{#showDisabled pagination.hasNextPage}}{{/showDisabled}}'><i class='ti-angle-left'></i></a>
           </div>
         {{else}}
           <h4>در حال حاضر هیچ مطلبی برای نمایش وجود ندارد 😊</h4>
